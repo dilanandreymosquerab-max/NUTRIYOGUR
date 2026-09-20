@@ -61,6 +61,7 @@ const defaultProducts = [
         price:5500,
         emoji:"🥛"
     }
+    
 ];
 
 
