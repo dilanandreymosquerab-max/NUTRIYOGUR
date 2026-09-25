@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutriyogur | Tienda Oficial</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
         :root {
@@ -911,6 +910,138 @@
             background: transparent;
             border-radius: 50% !important;
             box-shadow: 0 0 0 5px rgba(124, 255, 0, .30), 0 24px 55px rgba(0, 0, 0, .25);
+        }
+
+        /* === NUTRI YOGUR FUTURISTIC COMMERCIAL === */
+        .ny-futuristic-brand {
+            position: relative;
+            z-index: 4;
+            width: min(380px, 78vw);
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            isolation: isolate;
+        }
+
+        .ny-brand-glow {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124, 255, 0, .28), rgba(255, 106, 0, .14) 42%, transparent 72%);
+            filter: blur(8px);
+            animation: nyBrandPulse 2.2s ease-in-out infinite;
+        }
+
+        .ny-brand-ring {
+            position: absolute;
+            width: 285px;
+            height: 285px;
+            border: 1px solid rgba(124, 255, 0, .38);
+            border-radius: 50%;
+            box-shadow: 0 0 35px rgba(124, 255, 0, .12), inset 0 0 35px rgba(255, 106, 0, .08);
+            animation: nySpin 12s linear infinite;
+        }
+
+        .ny-brand-ring::before,
+        .ny-brand-ring::after {
+            content: "";
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #7cff00;
+            box-shadow: 0 0 18px #7cff00;
+        }
+
+        .ny-brand-ring::before {
+            top: 18px;
+            left: 50%
+        }
+
+        .ny-brand-ring::after {
+            right: 22px;
+            bottom: 48px;
+            background: #ff6a00;
+            box-shadow: 0 0 18px #ff6a00
+        }
+
+        .ny-brand-wordmark {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font: 900 clamp(48px, 7vw, 82px)/.82 Arial, sans-serif;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(124, 255, 0, .35), 0 0 28px rgba(255, 106, 0, .18);
+        }
+
+        .ny-brand-wordmark span {
+            color: #fff;
+            background: linear-gradient(90deg, #fff, #7cff00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .ny-brand-wordmark b {
+            font-weight: 900;
+            background: linear-gradient(90deg, #ff6a00, #ffe600);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -5px;
+        }
+
+        .ny-brand-scan {
+            position: absolute;
+            bottom: 18px;
+            padding: 7px 12px;
+            border: 1px solid rgba(124, 255, 0, .35);
+            border-radius: 999px;
+            color: #baff8a;
+            background: rgba(0, 0, 0, .28);
+            font: 800 9px/1 Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .ny-commercial-countdown {
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            z-index: 10;
+            min-width: 112px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(124, 255, 0, .45);
+            background: rgba(4, 12, 16, .78);
+            color: #dfffca;
+            font: 800 11px/1 Arial, sans-serif;
+            letter-spacing: 1px;
+            text-align: center;
+            box-shadow: 0 0 18px rgba(124, 255, 0, .12);
+        }
+
+        .ny-commercial-countdown b {
+            color: #7cff00;
+            font-size: 14px
+        }
+
+        @keyframes nyBrandPulse {
+
+            0%,
+            100% {
+                transform: scale(.94);
+                opacity: .72
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1
+            }
         }
     </style>
 
@@ -3026,7 +3157,7 @@
             width: 0;
             height: 100%;
             background: linear-gradient(90deg, #2f8f46, #f26a21);
-            animation: nyCommercialProgress 1.4s ease-out .15s forwards
+            animation: nyCommercialProgress 8s linear forwards
         }
 
         @keyframes nyCommercialFade {
@@ -3160,6 +3291,30 @@
                 left: 0;
                 right: 0
             }
+        }
+
+        /* QR ÚNICO — imagen embebida, visible y escaneable sin Internet */
+        #qrSection #qrcode {
+            width: 208px !important;
+            height: 208px !important;
+            min-height: 208px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            background: #fff !important;
+            padding: 14px !important;
+            border: 1px solid #cfd8df !important;
+            border-radius: 10px !important;
+        }
+
+        #qrSection #qrcode img {
+            width: 180px !important;
+            height: 180px !important;
+            display: block !important;
+            max-width: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
     </style>
 
@@ -3701,7 +3856,9 @@
 
                 <h3>QR Nutriyogur</h3>
 
-                <div id="qrcode"></div>
+                <div id="qrcode" aria-label="Código QR de Nutriyogur"><img
+                        src="data:image/png;base64,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"
+                        alt="Código QR Nutriyogur" width="180" height="180"></div>
 
                 <p>
                     Comparte este código con tus clientes.
@@ -3836,6 +3993,7 @@
         <div id="welcomeCommercial" class="hidden" role="dialog" aria-modal="true"
             aria-labelledby="welcomeCommercialTitle" onclick="if(event.target===this)closeWelcomeCommercial()">
             <div class="ny-commercial-card" onclick="event.stopPropagation()">
+                <div class="ny-commercial-countdown" id="nyCommercialCountdown">CIERRE EN <b>8</b>s</div>
                 <button class="ny-commercial-close-x" type="button" aria-label="Cerrar comercial"
                     onclick="closeWelcomeCommercial()">×</button>
 
@@ -3843,22 +4001,18 @@
                     <div class="ny-commercial-grid-lines"></div>
                     <div class="ny-commercial-orbit" aria-hidden="true"></div>
                     <div class="ny-commercial-status"><i></i>SISTEMA ONLINE · EXPERIENCIA ACTIVA</div>
-                    <div class="ny-commercial-product" aria-label="Producto Nutriyogur">
-                        <div class="ny-commercial-lid"></div>
-                        <div class="ny-commercial-label-line"></div>
-                        <div class="ny-commercial-micro">CONTROL DE CALIDAD · SABOR · NATURAL</div>
-                    </div>
-                    <div class="ny-commercial-fruits" aria-hidden="true">
-                        <span class="ny-fruit-dot">F</span><span class="ny-fruit-dot">M</span><span
-                            class="ny-fruit-dot">P</span><span class="ny-fruit-dot">C</span><span
-                            class="ny-fruit-dot">G</span>
+                    <div class="ny-futuristic-brand" aria-label="Nutri Yogur futurista">
+                        <div class="ny-brand-glow"></div>
+                        <div class="ny-brand-ring"></div>
+                        <div class="ny-brand-wordmark"><span>Nutri</span><b>Yogur</b></div>
+                        <div class="ny-brand-scan">SMART FOOD // NEXT GEN</div>
                     </div>
                     <div class="ny-commercial-code">NY-SYSTEM / 2026</div>
                 </div>
 
                 <div class="ny-commercial-copy">
-                    <div class="ny-commercial-kicker">NUTRIYOGUR · SMART FOOD EXPERIENCE</div>
-                    <h2 id="welcomeCommercialTitle">Bienvenido a <span>Nutriyogur</span></h2>
+                    <div class="ny-commercial-kicker">NUTRI · YOGUR // SMART FOOD SYSTEM</div>
+                    <h2 id="welcomeCommercialTitle">Bienvenido a <span>Nutri Yogur</span></h2>
                     <p id="welcomeCommercialText">Descubre una experiencia de yogur natural pensada para disfrutar
                         nuevos sabores, productos y promociones desde un solo lugar.</p>
 
@@ -5970,45 +6124,6 @@
 
 
         /* =====================================================
-           QR
-        ===================================================== */
-
-        function renderNutriyogurQR() {
-            const qr = document.getElementById("qrcode");
-            if (!qr) return;
-
-            if (typeof QRCode === "undefined") {
-                qr.setAttribute("data-qr-status", "waiting");
-                qr.innerHTML = '<div style="font:700 11px Arial;color:#66737d;text-align:center;padding:20px">Cargando código QR…</div>';
-                return;
-            }
-
-            qr.innerHTML = "";
-
-            new QRCode(qr, {
-                text: window.location.href || "Nutriyogur",
-                width: 180,
-                height: 180,
-                colorDark: "#FF6A00",
-                colorLight: "#FFFFFF",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        }
-
-        // Se intenta al cargar el DOM y también cuando terminan de cargar los recursos.
-        document.addEventListener("DOMContentLoaded", function () {
-            renderNutriyogurQR();
-            setTimeout(renderNutriyogurQR, 500);
-            setTimeout(renderNutriyogurQR, 1500);
-        });
-
-        window.addEventListener("load", function () {
-            renderNutriyogurQR();
-        });
-
-
-
-        /* =====================================================
            CAPA APP PROFESIONAL - FUNCIONAL
         ===================================================== */
         let activeProductCategory = "todos";
@@ -6162,6 +6277,51 @@
 
     </script>
 
+    <script>
+
+        /* === REAL 8-SECOND COMMERCIAL COUNTDOWN === */
+        let nyCommercialTimer = null;
+        let nyCommercialEndAt = 0;
+
+        function startNutriCommercialTimer() {
+            clearInterval(nyCommercialTimer);
+            const badge = document.getElementById("nyCommercialCountdown");
+            const progress = document.querySelector(".ny-commercial-progress span");
+            nyCommercialEndAt = Date.now() + 8000;
+
+            if (progress) {
+                progress.style.animation = "none";
+                void progress.offsetWidth;
+                progress.style.animation = "nyCommercialProgress 8s linear forwards";
+            }
+
+            const tick = () => {
+                const remaining = Math.max(0, nyCommercialEndAt - Date.now());
+                const seconds = Math.ceil(remaining / 1000);
+                if (badge) badge.innerHTML = `CIERRE EN <b>${seconds}</b>s`;
+                if (remaining <= 0) {
+                    clearInterval(nyCommercialTimer);
+                    closeWelcomeCommercial();
+                }
+            };
+            tick();
+            nyCommercialTimer = setInterval(tick, 100);
+        }
+
+        const _originalOpenWelcomeCommercial = openWelcomeCommercial;
+        openWelcomeCommercial = function () {
+            _originalOpenWelcomeCommercial();
+            startNutriCommercialTimer();
+        };
+
+        const _originalCloseWelcomeCommercial = closeWelcomeCommercial;
+        closeWelcomeCommercial = function () {
+            clearInterval(nyCommercialTimer);
+            _originalCloseWelcomeCommercial();
+        };
+
+    </script>
 </body>
 
 </html>
+
