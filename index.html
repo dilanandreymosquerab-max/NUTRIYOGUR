@@ -2610,6 +2610,657 @@
             }
         }
     </style>
+
+    <style id="nutriyogur-welcome-commercial">
+        /* =====================================================
+   COMERCIAL DE BIENVENIDA · TECH PREMIUM
+===================================================== */
+        #welcomeCommercial {
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(7, 12, 17, .86);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            animation: nyCommercialFade .28s ease both;
+        }
+
+        #welcomeCommercial.hidden {
+            display: none
+        }
+
+        .ny-commercial-card {
+            position: relative;
+            width: min(1020px, 100%);
+            max-height: 92vh;
+            overflow: auto;
+            display: grid;
+            grid-template-columns: 1.08fr .92fr;
+            background: #f7f9fa;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 38px 110px rgba(0, 0, 0, .48), 0 0 0 1px rgba(255, 106, 0, .06);
+            animation: nyCommercialUp .42s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .ny-commercial-visual {
+            position: relative;
+            min-height: 540px;
+            overflow: hidden;
+            padding: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 70% 22%, rgba(47, 143, 70, .28), transparent 22%),
+                radial-gradient(circle at 20% 85%, rgba(242, 106, 33, .24), transparent 27%),
+                linear-gradient(145deg, #0b1117 0%, #111c25 54%, #1b2b28 100%);
+        }
+
+        .ny-commercial-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: .14;
+            background-image: linear-gradient(rgba(255, 255, 255, .55) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .55) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 75%, transparent);
+        }
+
+        .ny-commercial-grid-lines {
+            position: absolute;
+            inset: 0;
+            pointer-events: none
+        }
+
+        .ny-commercial-grid-lines::before,
+        .ny-commercial-grid-lines::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 360px;
+            height: 360px;
+            border: 1px solid rgba(124, 255, 0, .20);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ny-commercial-grid-lines::after {
+            width: 260px;
+            height: 260px;
+            border-color: rgba(242, 106, 33, .18);
+            animation: nyRadar 7s linear infinite
+        }
+
+        .ny-commercial-orbit {
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border: 1px dashed rgba(255, 255, 255, .13);
+            border-radius: 50%;
+            animation: nySpin 18s linear infinite
+        }
+
+        .ny-commercial-orbit::before,
+        .ny-commercial-orbit::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #7cff00;
+            box-shadow: 0 0 16px rgba(124, 255, 0, .9)
+        }
+
+        .ny-commercial-orbit::before {
+            top: 26px;
+            left: 50%
+        }
+
+        .ny-commercial-orbit::after {
+            right: 34px;
+            bottom: 92px;
+            background: #f26a21;
+            box-shadow: 0 0 16px rgba(242, 106, 33, .9)
+        }
+
+        .ny-commercial-product {
+            position: relative;
+            z-index: 3;
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 42%, rgba(255, 255, 255, .22) 0 7%, rgba(124, 255, 0, .12) 20%, rgba(10, 22, 28, .72) 54%, rgba(4, 9, 13, .94) 72%);
+            border: 1px solid rgba(124, 255, 0, .72);
+            box-shadow: 0 0 25px rgba(124, 255, 0, .25), 0 0 75px rgba(242, 106, 33, .16), inset 0 0 35px rgba(124, 255, 0, .12);
+            animation: nyHoloCore 3.8s ease-in-out infinite;
+        }
+
+        .ny-commercial-product::before {
+            content: "N";
+            position: absolute;
+            inset: 39px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: #f7fff9;
+            font: 900 92px/1 Arial, sans-serif;
+            letter-spacing: -8px;
+            background: radial-gradient(circle, rgba(242, 106, 33, .22), rgba(8, 17, 22, .08) 58%, transparent 59%);
+            border: 1px solid rgba(255, 255, 255, .22);
+            text-shadow: 0 0 14px rgba(124, 255, 0, .95), 0 0 34px rgba(242, 106, 33, .5);
+            animation: nyCorePulse 2.4s ease-in-out infinite;
+        }
+
+        .ny-commercial-product::after {
+            content: "NUTRIYOGUR  //  SMART FOOD";
+            position: absolute;
+            left: 50%;
+            bottom: -43px;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            color: #d8f9df;
+            font: 800 8px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+            letter-spacing: 2px;
+            text-shadow: 0 0 9px rgba(124, 255, 0, .55);
+        }
+
+        .ny-commercial-lid {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 282px;
+            height: 94px;
+            transform: translate(-50%, -50%) rotate(-14deg);
+            border: 1px solid rgba(124, 255, 0, .48);
+            border-radius: 50%;
+            box-shadow: 0 0 18px rgba(124, 255, 0, .22);
+            background: transparent;
+            animation: nyHoloOrbit 5s linear infinite
+        }
+
+        .ny-commercial-lid::after {
+            content: "";
+            position: absolute;
+            inset: 17px 34px;
+            border: 1px solid rgba(242, 106, 33, .48);
+            border-radius: 50%;
+            transform: rotate(28deg)
+        }
+
+        .ny-commercial-label-line {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 290px;
+            height: 1px;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(90deg, transparent, rgba(124, 255, 0, .8), transparent);
+            box-shadow: 0 0 14px rgba(124, 255, 0, .55);
+            animation: nyScanLine 2.7s ease-in-out infinite
+        }
+
+        .ny-commercial-micro {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, 92px);
+            white-space: nowrap;
+            color: #8fa7af;
+            font: 700 7px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+            letter-spacing: 1.5px
+        }
+
+        .ny-commercial-particle {
+            position: absolute;
+            z-index: 2;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #7cff00;
+            box-shadow: 0 0 12px #7cff00;
+            animation: nyParticle 3.2s ease-in-out infinite
+        }
+
+        .ny-commercial-particle.p1 {
+            left: 25%;
+            top: 30%
+        }
+
+        .ny-commercial-particle.p2 {
+            right: 25%;
+            top: 42%;
+            animation-delay: .7s;
+            background: #f26a21;
+            box-shadow: 0 0 12px #f26a21
+        }
+
+        .ny-commercial-particle.p3 {
+            left: 33%;
+            bottom: 30%;
+            animation-delay: 1.3s
+        }
+
+        .ny-commercial-particle.p4 {
+            right: 31%;
+            bottom: 27%;
+            animation-delay: 1.9s;
+            background: #fff
+        }
+
+        .ny-commercial-fruits {
+            position: absolute;
+            z-index: 4;
+            left: 50%;
+            bottom: 48px;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px
+        }
+
+        .ny-fruit-dot {
+            width: 31px;
+            height: 31px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .94);
+            border: 1px solid rgba(255, 255, 255, .8);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, .25);
+            font-size: 13px
+        }
+
+        .ny-commercial-status {
+            position: absolute;
+            z-index: 4;
+            left: 26px;
+            top: 26px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 11px;
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 10px;
+            background: rgba(5, 10, 14, .48);
+            color: #dce7eb;
+            font: 700 9px/1 Arial, sans-serif;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .ny-commercial-status i {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #7cff00;
+            box-shadow: 0 0 12px #7cff00
+        }
+
+        .ny-commercial-code {
+            position: absolute;
+            right: 28px;
+            bottom: 26px;
+            color: rgba(255, 255, 255, .48);
+            font: 700 9px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+            letter-spacing: 1px
+        }
+
+        .ny-commercial-copy {
+            padding: 48px 44px 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f7f9fa 100%)
+        }
+
+        .ny-commercial-kicker {
+            display: inline-flex;
+            align-items: center;
+            width: max-content;
+            max-width: 100%;
+            padding: 8px 11px;
+            border-radius: 8px;
+            background: #edf5ef;
+            color: #28763a;
+            font: 800 10px/1 Arial, sans-serif;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 17px
+        }
+
+        .ny-commercial-copy h2 {
+            margin: 0;
+            color: #111a22;
+            font: 900 clamp(30px, 4vw, 48px)/1.02 Arial, sans-serif;
+            letter-spacing: -1.8px
+        }
+
+        .ny-commercial-copy h2 span {
+            color: #e95700
+        }
+
+        .ny-commercial-copy p {
+            margin: 17px 0 0;
+            color: #52606b;
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 470px
+        }
+
+        .ny-commercial-offer {
+            margin: 24px 0 17px;
+            padding: 17px;
+            border: 1px solid #dfe6ea;
+            border-left: 3px solid #f26a21;
+            border-radius: 12px;
+            background: #f8fafb
+        }
+
+        .ny-commercial-offer strong {
+            display: block;
+            color: #17212b;
+            font-size: 16px
+        }
+
+        .ny-commercial-offer small {
+            display: block;
+            margin-top: 6px;
+            color: #687682;
+            line-height: 1.5
+        }
+
+        .ny-commercial-tech-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 17px
+        }
+
+        .ny-tech-chip {
+            padding: 10px 9px;
+            border: 1px solid #e0e6e9;
+            border-radius: 9px;
+            background: #fff;
+            color: #43515b;
+            font: 800 9px/1.2 Arial, sans-serif;
+            letter-spacing: .06em;
+            text-align: center;
+            text-transform: uppercase
+        }
+
+        .ny-tech-chip b {
+            display: block;
+            color: #f26a21;
+            font-size: 13px;
+            margin-bottom: 4px
+        }
+
+        .ny-commercial-flavors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 0 0 23px
+        }
+
+        .ny-commercial-flavors span {
+            padding: 7px 9px;
+            border-radius: 7px;
+            background: #f0f3f5;
+            border: 1px solid #dfe5e9;
+            color: #34434e;
+            font-size: 10px;
+            font-weight: 700
+        }
+
+        .ny-commercial-actions {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap
+        }
+
+        .ny-commercial-main-btn {
+            flex: 1 1 190px;
+            min-height: 47px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #c94f12, #f26a21);
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 0 12px 25px rgba(201, 79, 18, .20)
+        }
+
+        .ny-commercial-close-btn {
+            flex: 0 0 auto;
+            min-height: 47px;
+            padding: 0 17px;
+            border-radius: 10px;
+            background: #e9eef1;
+            color: #33414d;
+            font-weight: 700
+        }
+
+        .ny-commercial-main-btn:hover,
+        .ny-commercial-close-btn:hover {
+            transform: translateY(-1px)
+        }
+
+        .ny-commercial-close-x {
+            position: absolute;
+            z-index: 8;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .94);
+            color: #33414d;
+            font-size: 21px;
+            box-shadow: 0 7px 18px rgba(0, 0, 0, .18)
+        }
+
+        .ny-commercial-progress {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            overflow: hidden;
+            background: #dfe5e8
+        }
+
+        .ny-commercial-progress span {
+            display: block;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #2f8f46, #f26a21);
+            animation: nyCommercialProgress 7.5s linear .15s forwards
+        }
+
+        @keyframes nyCommercialFade {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes nyCommercialUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.985)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        @keyframes nyCommercialProgress {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes nyHoloCore {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                filter: brightness(1)
+            }
+
+            50% {
+                transform: translateY(-9px) scale(1.035);
+                filter: brightness(1.2)
+            }
+        }
+
+        @keyframes nyCorePulse {
+
+            0%,
+            100% {
+                transform: scale(.94);
+                opacity: .78
+            }
+
+            50% {
+                transform: scale(1.04);
+                opacity: 1
+            }
+        }
+
+        @keyframes nyHoloOrbit {
+            to {
+                transform: translate(-50%, -50%) rotate(346deg)
+            }
+        }
+
+        @keyframes nyScanLine {
+
+            0%,
+            100% {
+                opacity: .15;
+                transform: translate(-50%, -80px)
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, 80px)
+            }
+        }
+
+        @keyframes nyParticle {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(.7);
+                opacity: .2
+            }
+
+            50% {
+                transform: translate(18px, -25px) scale(1.35);
+                opacity: 1
+            }
+        }
+
+        @keyframes nySpin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes nyRadar {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(.94);
+                opacity: .5
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.04);
+                opacity: 1
+            }
+        }
+
+        @media(max-width:760px) {
+            #welcomeCommercial {
+                padding: 9px
+            }
+
+            .ny-commercial-card {
+                grid-template-columns: 1fr;
+                max-height: 96vh;
+                border-radius: 19px
+            }
+
+            .ny-commercial-visual {
+                min-height: 330px;
+                padding: 25px
+            }
+
+            .ny-commercial-product {
+                transform: scale(.72)
+            }
+
+            .ny-commercial-orbit {
+                width: 300px;
+                height: 300px
+            }
+
+            .ny-commercial-grid-lines::before {
+                width: 250px;
+                height: 250px
+            }
+
+            .ny-commercial-grid-lines::after {
+                width: 185px;
+                height: 185px
+            }
+
+            .ny-commercial-copy {
+                padding: 27px 21px 29px
+            }
+
+            .ny-commercial-copy h2 {
+                font-size: 31px
+            }
+
+            .ny-commercial-copy p {
+                font-size: 13px
+            }
+
+            .ny-commercial-tech-row {
+                gap: 6px
+            }
+
+            .ny-tech-chip {
+                font-size: 8px
+            }
+
+            .ny-tech-chip b {
+                font-size: 11px
+            }
+
+            .ny-commercial-progress {
+                left: 0;
+                right: 0
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -3278,6 +3929,65 @@
         </nav>
 
         <div id="appToast" role="status" aria-live="polite"></div>
+
+
+        <div id="welcomeCommercial" class="hidden" role="dialog" aria-modal="true"
+            aria-labelledby="welcomeCommercialTitle" onclick="if(event.target===this)closeWelcomeCommercial()">
+            <div class="ny-commercial-card" onclick="event.stopPropagation()">
+                <button class="ny-commercial-close-x" type="button" aria-label="Cerrar comercial"
+                    onclick="closeWelcomeCommercial()">×</button>
+
+                <div class="ny-commercial-visual">
+                    <div class="ny-commercial-grid-lines"></div>
+                    <div class="ny-commercial-orbit" aria-hidden="true"></div>
+                    <div class="ny-commercial-status"><i></i>SISTEMA ONLINE · EXPERIENCIA ACTIVA</div>
+                    <div class="ny-commercial-product" aria-label="Identidad holográfica Nutriyogur">
+                        <div class="ny-commercial-lid"></div>
+                        <div class="ny-commercial-label-line"></div>
+                        <div class="ny-commercial-micro">QUALITY CORE · FLAVOR ENGINE · NATURAL</div>
+                    </div>
+                    <span class="ny-commercial-particle p1"></span><span class="ny-commercial-particle p2"></span>
+                    <span class="ny-commercial-particle p3"></span><span class="ny-commercial-particle p4"></span>
+                    <div class="ny-commercial-fruits" aria-hidden="true">
+                        <span class="ny-fruit-dot">F</span><span class="ny-fruit-dot">M</span><span
+                            class="ny-fruit-dot">P</span><span class="ny-fruit-dot">C</span><span
+                            class="ny-fruit-dot">G</span>
+                    </div>
+                    <div class="ny-commercial-code">NY-SYSTEM / 2026</div>
+                </div>
+
+                <div class="ny-commercial-copy">
+                    <div class="ny-commercial-kicker">NUTRIYOGUR · SMART FOOD EXPERIENCE</div>
+                    <h2 id="welcomeCommercialTitle">Bienvenido a <span>Nutriyogur</span></h2>
+                    <p id="welcomeCommercialText">Descubre una experiencia de yogur natural pensada para disfrutar
+                        nuevos sabores, productos y promociones desde un solo lugar.</p>
+
+                    <div class="ny-commercial-offer">
+                        <strong>Una nueva forma de elegir tu yogur.</strong>
+                        <small>Explora el catálogo, personaliza tu compra y consulta el estado de tus pedidos desde una
+                            experiencia digital diseñada para ti.</small>
+                    </div>
+
+                    <div class="ny-commercial-tech-row" aria-label="Características">
+                        <div class="ny-tech-chip"><b>01</b>Catálogo digital</div>
+                        <div class="ny-tech-chip"><b>02</b>Pedido inteligente</div>
+                        <div class="ny-tech-chip"><b>03</b>Seguimiento</div>
+                    </div>
+
+                    <div class="ny-commercial-flavors" aria-label="Sabores disponibles">
+                        <span>Fresa</span><span>Mora</span><span>Maracuyá</span><span>Piña</span><span>Coco</span><span>Café</span><span>Guanábana</span>
+                    </div>
+
+                    <div class="ny-commercial-actions">
+                        <button class="ny-commercial-main-btn" type="button"
+                            onclick="continueFromWelcomeCommercial()">Explorar productos</button>
+                        <button class="ny-commercial-close-btn" type="button"
+                            onclick="closeWelcomeCommercial()">Continuar</button>
+                    </div>
+                </div>
+                <div class="ny-commercial-progress" aria-hidden="true"><span></span></div>
+            </div>
+        </div>
 
         <div id="productDetailModal" class="app-modal hidden" onclick="if(event.target===this)closeProductDetail()">
             <div class="app-modal-card">
@@ -3985,6 +4695,50 @@
 
 
         /* =====================================================
+           COMERCIAL DE BIENVENIDA DEL CLIENTE
+        ===================================================== */
+
+        let welcomeCommercialTimer = null;
+
+        function openWelcomeCommercial() {
+            const modal = document.getElementById("welcomeCommercial");
+            if (!modal || !currentUser || currentUser.role !== "client") return;
+
+            // El comercial es temporal y no vuelve a aparecer continuamente durante la misma sesión.
+            try {
+                if (sessionStorage.getItem("ny_welcome_commercial_seen") === "1") return;
+                sessionStorage.setItem("ny_welcome_commercial_seen", "1");
+            } catch (e) { }
+
+            const text = document.getElementById("welcomeCommercialText");
+            if (text) {
+                const name = (currentUser.name || "").trim();
+                text.textContent = name
+                    ? `Hola ${name}. Descubre una experiencia de yogur natural pensada para disfrutar nuevos sabores, productos y promociones desde un solo lugar.`
+                    : "Descubre una experiencia de yogur natural pensada para disfrutar nuevos sabores, productos y promociones desde un solo lugar.";
+            }
+
+            modal.classList.remove("hidden");
+            document.body.classList.add("ny-commercial-open");
+
+            clearTimeout(welcomeCommercialTimer);
+            welcomeCommercialTimer = setTimeout(closeWelcomeCommercial, 7700);
+        }
+
+        function closeWelcomeCommercial() {
+            const modal = document.getElementById("welcomeCommercial");
+            if (modal) modal.classList.add("hidden");
+            document.body.classList.remove("ny-commercial-open");
+            clearTimeout(welcomeCommercialTimer);
+            welcomeCommercialTimer = null;
+        }
+
+        function continueFromWelcomeCommercial() {
+            closeWelcomeCommercial();
+            setTimeout(() => goTo("inicio"), 80);
+        }
+
+        /* =====================================================
            MOSTRAR CLIENTE
         ===================================================== */
 
@@ -4012,6 +4766,9 @@
             updateCart();
 
             window.scrollTo(0, 0);
+
+            // Comercial de bienvenida: solo para clientes después de iniciar sesión.
+            setTimeout(openWelcomeCommercial, 180);
         }
 
 
