@@ -2605,6 +2605,20 @@
                 color: #b94308 !important;
             }
         }
+
+        .admin-detail-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 16px 0 0;
+            margin-top: 18px;
+            border-top: 1px solid rgba(0, 0, 0, .10);
+        }
+
+        .admin-detail-footer .primary-btn {
+            min-width: 190px;
+            font-weight: 800;
+        }
     </style>
 
 
@@ -3340,6 +3354,924 @@
         }
     </style>
 
+
+    <style id="nutriyogur-premium-ui">
+        :root {
+            --ny-orange: #FF6A00;
+            --ny-orange2: #E95700;
+            --ny-lime: #7CFF00;
+            --ny-green: #39D353;
+            --ny-cream: #FFF8EA;
+            --ny-ink: #26351F;
+            --ny-card: rgba(255, 255, 255, .92);
+            --ny-border: rgba(38, 53, 31, .10);
+            --ny-shadow: 0 20px 60px rgba(39, 22, 8, .12)
+        }
+
+        body {
+            transition: background .35s, color .35s
+        }
+
+        .ny-premium-bar {
+            position: relative;
+            z-index: 20;
+            margin: 18px auto 8px;
+            max-width: 1180px;
+            padding: 12px 14px;
+            border: 1px solid var(--ny-border);
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(18px);
+            border-radius: 18px;
+            box-shadow: var(--ny-shadow);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .ny-quick {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .ny-quick button,
+        .ny-icon-btn {
+            border: 1px solid rgba(255, 106, 0, .16);
+            background: #fff;
+            border-radius: 12px;
+            padding: 9px 12px;
+            font-weight: 800;
+            color: var(--ny-ink);
+            transition: .2s
+        }
+
+        .ny-quick button:hover,
+        .ny-icon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 106, 0, .15)
+        }
+
+        .ny-quick .hot {
+            background: linear-gradient(135deg, var(--ny-orange), var(--ny-orange2));
+            color: #fff;
+            border-color: transparent
+        }
+
+        .ny-mini-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800
+        }
+
+        .ny-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--ny-lime), #dfff8a);
+            font-size: 18px
+        }
+
+        .ny-home-grid {
+            max-width: 1180px;
+            margin: 18px auto 35px;
+            display: grid;
+            grid-template-columns: 1.45fr .85fr;
+            gap: 18px
+        }
+
+        .ny-hero-pro {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 42px;
+            background: linear-gradient(125deg, #351500, #FF6A00 55%, #9cff2f);
+            color: #fff;
+            box-shadow: 0 30px 80px rgba(255, 106, 0, .22);
+            min-height: 280px
+        }
+
+        .ny-hero-pro:before,
+        .ny-hero-pro:after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: .45
+        }
+
+        .ny-hero-pro:before {
+            width: 220px;
+            height: 220px;
+            right: -50px;
+            top: -60px;
+            background: rgba(255, 255, 255, .25)
+        }
+
+        .ny-hero-pro:after {
+            width: 150px;
+            height: 150px;
+            left: 42%;
+            bottom: -85px;
+            background: #7CFF00
+        }
+
+        .ny-hero-pro>* {
+            position: relative;
+            z-index: 2
+        }
+
+        .ny-kicker {
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 900;
+            text-transform: uppercase;
+            opacity: .86
+        }
+
+        .ny-hero-pro h2 {
+            font-size: clamp(32px, 4vw, 54px);
+            line-height: .98;
+            margin: 10px 0 14px
+        }
+
+        .ny-hero-pro p {
+            max-width: 650px;
+            line-height: 1.65;
+            opacity: .92
+        }
+
+        .ny-hero-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 22px
+        }
+
+        .ny-hero-actions button {
+            padding: 13px 17px;
+            border-radius: 13px;
+            font-weight: 900
+        }
+
+        .ny-hero-actions .primary {
+            background: #FFE600;
+            color: #26351F
+        }
+
+        .ny-hero-actions .ghost {
+            background: rgba(255, 255, 255, .15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .3)
+        }
+
+        .ny-side-card {
+            background: var(--ny-card);
+            border: 1px solid var(--ny-border);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: var(--ny-shadow)
+        }
+
+        .ny-side-card h3 {
+            margin-bottom: 14px
+        }
+
+        .ny-offer {
+            background: linear-gradient(135deg, #fff4dc, #f5ffd8);
+            border-radius: 18px;
+            padding: 17px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 106, 0, .12)
+        }
+
+        .ny-offer strong {
+            display: block;
+            font-size: 18px
+        }
+
+        .ny-code {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: #26351F;
+            color: #fff;
+            font-size: 12px;
+            letter-spacing: 1px
+        }
+
+        .ny-section {
+            max-width: 1180px;
+            margin: 28px auto
+        }
+
+        .ny-section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 14px
+        }
+
+        .ny-section-head h2 {
+            font-size: 28px
+        }
+
+        .ny-section-head p {
+            opacity: .7
+        }
+
+        .ny-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 13px
+        }
+
+        .ny-feature {
+            padding: 18px;
+            border-radius: 18px;
+            background: var(--ny-card);
+            border: 1px solid var(--ny-border);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .07)
+        }
+
+        .ny-feature b {
+            display: block;
+            margin: 9px 0 5px
+        }
+
+        .ny-feature span {
+            font-size: 13px;
+            opacity: .72;
+            line-height: 1.45
+        }
+
+        .ny-promo-strip {
+            max-width: 1180px;
+            margin: 20px auto;
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: #26351F;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 18px 50px rgba(38, 53, 31, .18)
+        }
+
+        .ny-promo-strip button {
+            background: #FFE600;
+            color: #26351F;
+            border-radius: 11px;
+            padding: 10px 14px;
+            font-weight: 900
+        }
+
+        .ny-drawer {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(15, 15, 10, .48);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: flex-end
+        }
+
+        .ny-drawer.hidden,
+        .ny-modal.hidden {
+            display: none
+        }
+
+        .ny-drawer-panel {
+            height: 100%;
+            width: min(440px, 94vw);
+            background: #fff;
+            padding: 24px;
+            overflow: auto;
+            box-shadow: -25px 0 70px rgba(0, 0, 0, .2)
+        }
+
+        .ny-drawer-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px
+        }
+
+        .ny-notice {
+            padding: 14px;
+            border-radius: 15px;
+            background: #fff8ea;
+            border: 1px solid rgba(255, 106, 0, .12);
+            margin: 10px 0
+        }
+
+        .ny-notice small {
+            opacity: .6
+        }
+
+        .ny-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2100;
+            background: rgba(15, 15, 10, .55);
+            backdrop-filter: blur(7px);
+            display: grid;
+            place-items: center;
+            padding: 18px
+        }
+
+        .ny-modal-card {
+            width: min(720px, 96vw);
+            max-height: 92vh;
+            overflow: auto;
+            background: #fff;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, .28)
+        }
+
+        .ny-modal-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 16px
+        }
+
+        .ny-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f1f1ed;
+            font-size: 18px
+        }
+
+        .ny-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .ny-form-grid .full {
+            grid-column: 1/-1
+        }
+
+        .ny-form-grid label {
+            font-size: 12px;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .ny-form-grid input,
+        .ny-form-grid select,
+        .ny-form-grid textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #dfe4d9;
+            border-radius: 12px;
+            outline: none
+        }
+
+        .ny-form-grid textarea {
+            min-height: 90px;
+            resize: vertical
+        }
+
+        .ny-modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 16px
+        }
+
+        .ny-primary {
+            background: linear-gradient(135deg, var(--ny-orange), var(--ny-orange2));
+            color: #fff;
+            padding: 12px 17px;
+            border-radius: 12px;
+            font-weight: 900
+        }
+
+        .ny-secondary {
+            background: #f0f2ec;
+            color: #26351F;
+            padding: 12px 17px;
+            border-radius: 12px;
+            font-weight: 900
+        }
+
+        .ny-tracking {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 14px
+        }
+
+        .ny-track-step {
+            padding: 12px 8px;
+            text-align: center;
+            border-radius: 13px;
+            background: #f0f2ec;
+            font-size: 11px;
+            font-weight: 900;
+            color: #7a8171
+        }
+
+        .ny-track-step.done {
+            background: #eaffd7;
+            color: #2c6d2f
+        }
+
+        .ny-track-step.current {
+            background: #fff0df;
+            color: #a64300;
+            box-shadow: inset 0 0 0 1px #ffb27b
+        }
+
+        .ny-invoice {
+            border: 1px solid #e6e9e1;
+            border-radius: 16px;
+            padding: 18px;
+            background: #fff
+        }
+
+        .ny-invoice-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd
+        }
+
+        .ny-invoice-total {
+            font-size: 20px;
+            font-weight: 900;
+            padding-top: 12px
+        }
+
+        .ny-admin-enhanced {
+            max-width: 1180px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 18px
+        }
+
+        .ny-admin-card {
+            background: #fff;
+            border: 1px solid var(--ny-border);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .06)
+        }
+
+        .ny-kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px
+        }
+
+        .ny-kpi {
+            padding: 15px;
+            border-radius: 15px;
+            background: #fff8ea
+        }
+
+        .ny-kpi small {
+            opacity: .65
+        }
+
+        .ny-kpi strong {
+            display: block;
+            font-size: 25px;
+            margin-top: 4px
+        }
+
+        .ny-bars {
+            display: flex;
+            align-items: end;
+            gap: 8px;
+            height: 160px;
+            margin-top: 15px
+        }
+
+        .ny-bar {
+            flex: 1;
+            border-radius: 8px 8px 3px 3px;
+            background: linear-gradient(#7CFF00, #39D353);
+            min-height: 10px;
+            position: relative
+        }
+
+        .ny-bar span {
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            opacity: .65
+        }
+
+        .ny-stock-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eef0ea
+        }
+
+        .ny-stock-pill {
+            padding: 5px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 900
+        }
+
+        .stock-ok {
+            background: #e7f8e6;
+            color: #26722c
+        }
+
+        .stock-low {
+            background: #fff0cf;
+            color: #8b5a00
+        }
+
+        .stock-out {
+            background: #ffe2dc;
+            color: #a62d1b
+        }
+
+        .ny-fab-stack {
+            position: fixed;
+            right: 20px;
+            bottom: 92px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .ny-fab {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .15);
+            font-size: 20px
+        }
+
+        .ny-fab.primary {
+            background: linear-gradient(135deg, var(--ny-orange), var(--ny-orange2));
+            color: #fff
+        }
+
+        .ny-badge {
+            position: absolute;
+            margin: -5px 0 0 -5px;
+            background: #d92f20;
+            color: #fff;
+            font-size: 9px;
+            min-width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: 900
+        }
+
+        .ny-chat {
+            position: fixed;
+            right: 78px;
+            bottom: 92px;
+            width: min(350px, calc(100vw - 100px));
+            z-index: 1900;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .22);
+            overflow: hidden;
+            border: 1px solid #eee
+        }
+
+        .ny-chat-head {
+            background: linear-gradient(135deg, #26351F, #4c712d);
+            color: #fff;
+            padding: 15px
+        }
+
+        .ny-chat-body {
+            padding: 14px
+        }
+
+        .ny-chat-opt {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #f5f7f1;
+            padding: 11px;
+            border-radius: 11px;
+            margin: 7px 0;
+            font-weight: 800
+        }
+
+        body.ny-dark {
+            background: #10140f;
+            color: #eef4e8
+        }
+
+        body.ny-dark .ny-premium-bar,
+        body.ny-dark .ny-side-card,
+        body.ny-dark .ny-feature,
+        body.ny-dark .ny-modal-card,
+        body.ny-dark .ny-drawer-panel,
+        body.ny-dark .ny-admin-card,
+        body.ny-dark .ny-chat {
+            background: #182016;
+            color: #eef4e8;
+            border-color: #33402e
+        }
+
+        body.ny-dark .ny-quick button,
+        body.ny-dark .ny-icon-btn {
+            background: #202a1d;
+            color: #eef4e8;
+            border-color: #3c4a35
+        }
+
+        body.ny-dark .ny-form-grid input,
+        body.ny-dark .ny-form-grid select,
+        body.ny-dark .ny-form-grid textarea {
+            background: #10150f;
+            color: #eef4e8;
+            border-color: #3d4a38
+        }
+
+        body.ny-dark .ny-notice,
+        body.ny-dark .ny-offer,
+        body.ny-dark .ny-kpi {
+            background: #222d1e
+        }
+
+        body.ny-dark .ny-invoice {
+            background: #182016;
+            border-color: #3d4a38
+        }
+
+        @media(max-width:900px) {
+
+            .ny-home-grid,
+            .ny-admin-enhanced {
+                grid-template-columns: 1fr
+            }
+
+            .ny-feature-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .ny-premium-bar {
+                margin: 10px
+            }
+
+            .ny-section,
+            .ny-promo-strip {
+                margin-left: 10px;
+                margin-right: 10px
+            }
+
+            .ny-hero-pro {
+                padding: 30px
+            }
+
+            .ny-kpi-grid {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(max-width:600px) {
+            .ny-feature-grid {
+                grid-template-columns: 1fr
+            }
+
+            .ny-form-grid {
+                grid-template-columns: 1fr
+            }
+
+            .ny-form-grid .full {
+                grid-column: auto
+            }
+
+            .ny-tracking {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .ny-mini-user span {
+                display: none
+            }
+
+            .ny-premium-bar {
+                align-items: flex-start
+            }
+
+            .ny-quick {
+                max-width: 75%
+            }
+
+            .ny-fab-stack {
+                right: 12px
+            }
+
+            .ny-chat {
+                right: 68px
+            }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style id="nutriyogur-accessibility-upgrade">
+        :root {
+            --ny-text: #172016;
+            --ny-muted: #394737;
+            --ny-focus: #7CFF00
+        }
+
+        body {
+            color: var(--ny-text);
+            font-size: 16px;
+            line-height: 1.55
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif
+        }
+
+        button,
+        .btn,
+        .hero-btn,
+        .add-cart,
+        .primary-btn,
+        .nav-link {
+            font-weight: 800;
+            letter-spacing: .1px
+        }
+
+        button {
+            font-size: 15px
+        }
+
+        input,
+        select,
+        textarea {
+            font-size: 16px;
+            color: #172016;
+            background: #fff
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 800;
+            color: #26351F
+        }
+
+        h1 {
+            line-height: 1.08
+        }
+
+        h2 {
+            line-height: 1.15
+        }
+
+        h3 {
+            line-height: 1.2
+        }
+
+        .small,
+        .muted,
+        .hint,
+        .meta,
+        .product-meta {
+            color: #394737 !important
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid var(--ny-focus);
+            outline-offset: 3px
+        }
+
+        .ny-qr-launch {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #FF6A00, #E95700);
+            color: #fff;
+            border: 0;
+            border-radius: 13px;
+            padding: 13px 18px;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(233, 87, 0, .22)
+        }
+
+        .ny-qr-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 18, 12, .72);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100000
+        }
+
+        .ny-qr-modal.hidden {
+            display: none !important
+        }
+
+        .ny-qr-card {
+            width: min(430px, 96vw);
+            background: #fff;
+            border-radius: 24px;
+            padding: 26px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+            text-align: center;
+            color: #172016
+        }
+
+        .ny-qr-card h3 {
+            margin: 0 0 8px;
+            font-size: 25px
+        }
+
+        .ny-qr-card p {
+            font-size: 15px;
+            color: #394737
+        }
+
+        .ny-qr-box {
+            width: 240px;
+            height: 240px;
+            margin: 18px auto;
+            background: #fff;
+            border: 2px solid #26351F;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px
+        }
+
+        .ny-qr-box canvas,
+        .ny-qr-box img {
+            max-width: 210px !important;
+            max-height: 210px !important
+        }
+
+        .ny-qr-url {
+            font-size: 13px;
+            word-break: break-all;
+            background: #F4F7F1;
+            padding: 10px;
+            border-radius: 10px;
+            color: #394737;
+            margin: 10px 0
+        }
+
+        .ny-qr-close {
+            background: #26351F;
+            color: #fff;
+            border: 0;
+            border-radius: 11px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 800
+        }
+
+        .ny-qr-warning {
+            font-size: 13px;
+            color: #9A4A00;
+            background: #FFF4E8;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px
+        }
+    </style>
 </head>
 
 <body>
@@ -3683,6 +4615,8 @@
 
             </div>
 
+            <button type="button" class="ny-qr-launch" onclick="openNutriQR()"
+                aria-label="Mostrar código QR para abrir Nutriyogur">📱 Abrir Nutriyogur con QR</button>
         </section>
 
 
@@ -3858,39 +4792,6 @@
             <div id="clientOrders" class="orders"></div>
 
         </section>
-
-
-        <!-- QR -->
-
-        <section id="qrSection" class="container qr-section-visible">
-
-            <div class="section-title">
-
-                <h2>Comparte Nutriyogur</h2>
-
-                <p>
-                    Escanea el código para abrir la aplicación.
-                </p>
-
-            </div>
-
-            <div class="qr-box">
-
-                <h3>QR Nutriyogur</h3>
-
-                <div id="qrcode" aria-label="Código QR de Nutriyogur"><img
-                        src="data:image/png;base64,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"
-                        alt="Código QR Nutriyogur" width="180" height="180"></div>
-
-                <p>
-                    Comparte este código con tus clientes.
-                </p>
-
-            </div>
-
-        </section>
-
-
         <!-- CONTACTO -->
 
         <section id="contacto" class="container">
@@ -4360,13 +5261,21 @@
 
 
         <!-- DETALLE DE PEDIDO / CLIENTE -->
-        <div id="adminDetailModal" class="modal hidden">
+        <div id="adminDetailModal" class="modal hidden" onclick="if(event.target===this)closeAdminDetail()">
             <div class="modal-box admin-detail-modal-box">
                 <div class="modal-head">
                     <h2 id="adminDetailTitle">Detalle</h2>
                     <button class="close" onclick="closeAdminDetail()">✕</button>
                 </div>
                 <div id="adminDetailBody" class="admin-detail-body"></div>
+                <div class="admin-detail-footer">
+                    <button type="button" class="secondary-btn" onclick="closeAdminDetail()">
+                        ✕ Cerrar detalle
+                    </button>
+                    <button type="button" class="primary-btn" onclick="closeAdminDetail()">
+                        ← Volver al panel
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -6140,6 +7049,23 @@
             document.getElementById("adminDetailModal")?.classList.add("hidden");
         }
 
+        // Cerrar cualquier ventana administrativa abierta con Escape.
+        document.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") return;
+
+            const detail = document.getElementById("adminDetailModal");
+            const product = document.getElementById("productModal");
+
+            if (detail && !detail.classList.contains("hidden")) {
+                closeAdminDetail();
+                return;
+            }
+
+            if (product && !product.classList.contains("hidden")) {
+                closeProductModal();
+            }
+        });
+
         /* =====================================================
            NAVEGACIÓN
         ===================================================== */
@@ -6371,7 +7297,278 @@
         };
 
     </script>
+
+    <!-- NUTRIYOGUR PREMIUM EXPERIENCE -->
+    <div id="nyPremiumBar" class="ny-premium-bar hidden">
+        <div class="ny-quick">
+            <button class="hot" onclick="nyScroll('inicio')">🏠 Inicio</button>
+            <button onclick="nyScroll('productos')">🥭 Productos</button>
+            <button onclick="nyScroll('pedidos')">📦 Pedidos</button>
+            <button onclick="openNutriPromos()">🎟️ Promos</button>
+        </div>
+        <div class="ny-mini-user">
+            <div class="ny-avatar">🥛</div><span id="nyMiniUser">Cliente</span>
+        </div>
+    </div>
+
+    <div id="nyPremiumHome" class="hidden">
+        <div class="ny-home-grid">
+            <div class="ny-hero-pro">
+                <div class="ny-kicker">Experiencia Nutriyogur</div>
+                <h2>Tu yogur favorito.<br>Una experiencia mejor.</h2>
+                <p>Descubre sabores, promociones, pedidos y beneficios desde una interfaz pensada para comprar de forma
+                    rápida y sencilla.</p>
+                <div class="ny-hero-actions"><button class="primary" onclick="nyScroll('productos')">Explorar sabores
+                        →</button><button class="ghost" onclick="openNutriPromos()">Ver promociones</button></div>
+            </div>
+            <div class="ny-side-card">
+                <h3>🔥 Oferta destacada</h3>
+                <div class="ny-offer"><strong>Pack Sabores Nutri</strong><span>Combina tus favoritos y recibe un
+                        beneficio especial.</span><span class="ny-code">NUTRI10</span></div>
+                <button class="ny-primary" style="width:100%" onclick="copyCoupon('NUTRI10')">Copiar cupón</button>
+            </div>
+        </div>
+
+        <div class="ny-section">
+            <div class="ny-section-head">
+                <div>
+                    <h2>Todo lo que necesitas</h2>
+                    <p>Herramientas rápidas para tu cuenta Nutriyogur.</p>
+                </div>
+            </div>
+            <div class="ny-feature-grid">
+                <div class="ny-feature"><span>📦</span><b>Seguimiento</b><span>Consulta visualmente el avance de tus
+                        pedidos.</span></div>
+                <div class="ny-feature"><span>❤️</span><b>Favoritos</b><span>Guarda sabores para encontrarlos
+                        rápidamente.</span></div>
+                <div class="ny-feature"><span>🎟️</span><b>Cupones</b><span>Conserva promociones disponibles en tu
+                        cuenta.</span></div>
+                <div class="ny-feature"><span>💬</span><b>Soporte</b><span>Obtén ayuda comercial desde el chat
+                        rápido.</span></div>
+            </div>
+        </div>
+        <div class="ny-promo-strip">
+            <div><strong>¿Listo para tu próximo yogur?</strong><br><small>Explora el catálogo y arma tu pedido.</small>
+            </div><button onclick="nyScroll('productos')">Comprar ahora</button>
+        </div>
+    </div>
+
+    <div id="nyFabStack" class="ny-fab-stack hidden">
+        <button class="ny-fab" title="Notificaciones" onclick="openNutriNotifications()">🔔<span id="nyNotifBadge"
+                class="ny-badge">0</span></button>
+        <button class="ny-fab" title="Mi perfil" onclick="openNutriProfile()">👤</button>
+        <button class="ny-fab" title="Ayuda" onclick="toggleNutriChat()">💬</button>
+        <button class="ny-fab" title="Modo oscuro" onclick="toggleNutriDark()">🌙</button>
+    </div>
+
+    <div id="nyChat" class="ny-chat hidden">
+        <div class="ny-chat-head"><strong>NutriSoporte</strong><br><small>¿En qué podemos ayudarte?</small></div>
+        <div class="ny-chat-body">
+            <button class="ny-chat-opt" onclick="nyChatAction('pedido')">📦 Consultar mi pedido</button>
+            <button class="ny-chat-opt" onclick="nyChatAction('pago')">💳 Preguntas sobre pagos</button>
+            <button class="ny-chat-opt" onclick="nyChatAction('entrega')">🚚 Información de entrega</button>
+            <button class="ny-chat-opt" onclick="nyChatAction('producto')">🥭 Ayuda con productos</button>
+            <button class="ny-chat-opt" onclick="openWhatsApp()">🟢 Hablar por WhatsApp</button>
+        </div>
+    </div>
+
+    <div id="nyNotifications" class="ny-drawer hidden" onclick="if(event.target===this)closeNutriNotifications()">
+        <div class="ny-drawer-panel">
+            <div class="ny-drawer-head">
+                <div>
+                    <h2>Notificaciones</h2><small>Actividad reciente de Nutriyogur</small>
+                </div><button class="ny-close" onclick="closeNutriNotifications()">×</button>
+            </div>
+            <div id="nyNotificationList"></div>
+        </div>
+    </div>
+
+    <div id="nyProfile" class="ny-modal hidden">
+        <div class="ny-modal-card">
+            <div class="ny-modal-head">
+                <div>
+                    <h2>Mi cuenta</h2><small>Datos y actividad de tu perfil</small>
+                </div><button class="ny-close" onclick="closeNutriProfile()">×</button>
+            </div>
+            <div id="nyProfileBody"></div>
+        </div>
+    </div>
+
+    <div id="nyPromos" class="ny-modal hidden">
+        <div class="ny-modal-card">
+            <div class="ny-modal-head">
+                <div>
+                    <h2>🎟️ Promociones Nutriyogur</h2><small>Beneficios disponibles</small>
+                </div><button class="ny-close" onclick="closeNutriPromos()">×</button>
+            </div>
+            <div class="ny-offer"><strong>NUTRI10 · 10% de beneficio</strong>
+                <p>Usa este código al realizar tu próximo pedido.</p><span class="ny-code">NUTRI10</span><button
+                    class="ny-secondary" style="float:right" onclick="copyCoupon('NUTRI10')">Copiar</button>
+            </div>
+            <div class="ny-offer"><strong>FRESA15 · Promo especial</strong>
+                <p>Promoción demostrativa para sabores de fresa.</p><span class="ny-code">FRESA15</span><button
+                    class="ny-secondary" style="float:right" onclick="copyCoupon('FRESA15')">Copiar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="nyCheckout" class="ny-modal hidden">
+        <div class="ny-modal-card">
+            <div class="ny-modal-head">
+                <div>
+                    <h2>Finalizar pedido</h2><small>Completa los datos de entrega</small>
+                </div><button class="ny-close" onclick="closeEnhancedCheckout()">×</button>
+            </div>
+            <form id="nyCheckoutForm" onsubmit="finalizeEnhancedCheckout(event)">
+                <div class="ny-form-grid">
+                    <div><label>Nombre</label><input id="nyName" required></div>
+                    <div><label>Teléfono</label><input id="nyPhone" required inputmode="tel"></div>
+                    <div class="full"><label>Dirección de entrega</label><input id="nyAddress" required
+                            placeholder="Dirección, barrio, apartamento..."></div>
+                    <div><label>Método de pago</label><select id="nyPayment">
+                            <option>Pago contra entrega</option>
+                            <option>Transferencia</option>
+                            <option>Nequi</option>
+                            <option>Daviplata</option>
+                        </select></div>
+                    <div><label>Cupón</label><input id="nyCoupon" placeholder="Ej. NUTRI10"></div>
+                    <div class="full"><label>Notas del pedido</label><textarea id="nyNotes"
+                            placeholder="Indicaciones para la entrega..."></textarea></div>
+                </div>
+                <div class="ny-modal-actions"><button type="button" class="ny-secondary"
+                        onclick="closeEnhancedCheckout()">Cancelar</button><button class="ny-primary"
+                        type="submit">Confirmar pedido</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="nyInvoice" class="ny-modal hidden">
+        <div class="ny-modal-card">
+            <div class="ny-modal-head">
+                <div>
+                    <h2>🧾 Comprobante Nutriyogur</h2><small id="nyInvoiceNumber"></small>
+                </div><button class="ny-close" onclick="closeNutriInvoice()">×</button>
+            </div>
+            <div id="nyInvoiceBody"></div>
+            <div class="ny-modal-actions"><button class="ny-secondary" onclick="window.print()">Imprimir</button><button
+                    class="ny-primary" onclick="closeNutriInvoice()">Listo</button></div>
+        </div>
+    </div>
+
+    <div id="nyAdminEnhanced" class="ny-admin-enhanced hidden">
+        <div class="ny-admin-card">
+            <h2>📈 Resumen comercial</h2>
+            <p style="opacity:.65">Vista rápida de rendimiento</p>
+            <div class="ny-kpi-grid" style="margin-top:14px">
+                <div class="ny-kpi"><small>Ingresos</small><strong id="nySalesKpi">$0</strong></div>
+                <div class="ny-kpi"><small>Ticket promedio</small><strong id="nyTicketKpi">$0</strong></div>
+                <div class="ny-kpi"><small>Stock bajo</small><strong id="nyLowStockKpi">0</strong></div>
+            </div>
+            <div id="nySalesBars" class="ny-bars"></div>
+        </div>
+        <div class="ny-admin-card">
+            <h2>📦 Inventario inteligente</h2>
+            <p style="opacity:.65">Control visual del stock</p>
+            <div id="nyStockList" style="margin-top:10px"></div>
+        </div>
+    </div>
+
+
+    <script id="nutriyogur-premium-js">
+        (function () {
+            const $ = id => document.getElementById(id);
+            window.nyScroll = id => { const e = $(id); if (e) e.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+            window.openNutriPromos = () => $('nyPromos')?.classList.remove('hidden');
+            window.closeNutriPromos = () => $('nyPromos')?.classList.add('hidden');
+            window.openNutriNotifications = () => { renderNutriNotifications(); $('nyNotifications')?.classList.remove('hidden') };
+            window.closeNutriNotifications = () => $('nyNotifications')?.classList.add('hidden');
+            window.toggleNutriChat = () => $('nyChat')?.classList.toggle('hidden');
+            window.closeNutriProfile = () => $('nyProfile')?.classList.add('hidden');
+            window.openNutriProfile = () => { renderNutriProfile(); $('nyProfile')?.classList.remove('hidden') };
+            window.closeNutriInvoice = () => $('nyInvoice')?.classList.add('hidden');
+            window.copyCoupon = code => { navigator.clipboard?.writeText(code).catch(() => { }); toast('Cupón ' + code + ' copiado'); };
+            window.toggleNutriDark = () => { document.body.classList.toggle('ny-dark'); localStorage.setItem('nutriyogur_dark', document.body.classList.contains('ny-dark') ? '1' : '0'); };
+            window.nyChatAction = type => { toggleNutriChat(); const map = { pedido: 'Ve a “Mis pedidos” para consultar el estado de tu compra.', pago: 'Puedes seleccionar tu método de pago al finalizar el pedido.', entrega: 'La dirección y las indicaciones se solicitan al confirmar la compra.', producto: 'Explora Productos y usa la búsqueda por sabor.' }; toast(map[type] || 'Estamos para ayudarte'); };
+
+            function getOrders() { try { return JSON.parse(localStorage.getItem('nutriyogur_orders') || '[]') } catch (e) { return [] } }
+            function getUsers() { try { return JSON.parse(localStorage.getItem('nutriyogur_users') || '[]') } catch (e) { return [] } }
+            function money(v) { return Number(v || 0).toLocaleString('es-CO') }
+            function current() { try { return typeof currentUser !== 'undefined' ? currentUser : null } catch (e) { return null } }
+            function renderNutriProfile() {
+                const u = current() || {}; const orders = getOrders().filter(o => o.username === u.username); const total = orders.reduce((a, o) => a + Number(o.total || 0), 0);
+                $('nyMiniUser') && ($('nyMiniUser').textContent = u.name || u.username || 'Cliente');
+                $('nyProfileBody').innerHTML = `<div class="ny-invoice"><h3>${u.name || 'Cliente'}</h3><p style="opacity:.7">@${u.username || 'usuario'} · ${u.email || 'Sin correo'}</p><div class="ny-invoice-row"><span>Pedidos</span><strong>${orders.length}</strong></div><div class="ny-invoice-row"><span>Total comprado</span><strong>$${money(total)}</strong></div><div class="ny-invoice-row"><span>Favoritos</span><strong>${(JSON.parse(localStorage.getItem('nutriyogur_favorites') || '[]')).length}</strong></div></div><div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="ny-secondary" onclick="nyScroll('pedidos');closeNutriProfile()">📦 Mis pedidos</button><button class="ny-secondary" onclick="openNutriPromos();closeNutriProfile()">🎟️ Cupones</button></div>`;
+            }
+            function renderNutriNotifications() {
+                const u = current() || {}; const orders = getOrders().filter(o => o.username === u.username).slice(-6).reverse(); const list = $('nyNotificationList'); if (!list) return;
+                let html = `<div class="ny-notice"><strong>🎁 Promoción disponible</strong><br><small>Prueba el cupón NUTRI10.</small></div>`;
+                orders.forEach(o => html += `<div class="ny-notice"><strong>📦 ${o.id || 'Pedido'}</strong><br><small>Estado: ${o.status || 'Pendiente'} · ${o.date || ''}</small></div>`);
+                list.innerHTML = html; const badge = $('nyNotifBadge'); if (badge) badge.textContent = Math.min(9, orders.length + 1);
+            }
+            function initClientPremium() {
+                $('nyPremiumBar')?.classList.remove('hidden'); $('nyPremiumHome')?.classList.remove('hidden'); $('nyFabStack')?.classList.remove('hidden');
+                renderNutriNotifications(); renderNutriProfile();
+                if (localStorage.getItem('nutriyogur_dark') === '1') document.body.classList.add('ny-dark');
+            }
+            function initAdminPremium() { $('nyAdminEnhanced')?.classList.remove('hidden'); renderAdminPremium(); }
+
+            function renderAdminPremium() {
+                const orders = getOrders(); const products = JSON.parse(localStorage.getItem('nutriyogur_products') || '[]'); const sales = orders.reduce((a, o) => a + Number(o.total || 0), 0); const avg = orders.length ? sales / orders.length : 0;
+                $('nySalesKpi') && ($('nySalesKpi').textContent = '$' + money(sales)); $('nyTicketKpi') && ($('nyTicketKpi').textContent = '$' + money(avg));
+                const stocks = products.map((p, i) => ({ p, stock: Number(p.stock ?? (24 + (i * 7) % 34)) })); const low = stocks.filter(x => x.stock < 10).length; $('nyLowStockKpi') && ($('nyLowStockKpi').textContent = low);
+                $('nyStockList').innerHTML = stocks.slice(0, 8).map(x => { const c = x.stock <= 0 ? 'stock-out' : x.stock < 10 ? 'stock-low' : 'stock-ok'; const t = x.stock <= 0 ? 'Agotado' : x.stock < 10 ? 'Bajo' : 'Disponible'; return `<div class="ny-stock-row"><span>${x.p.name}</span><span class="ny-stock-pill ${c}">${x.stock} · ${t}</span></div>` }).join('');
+                const vals = [0, 0, 0, 0, 0, 0, 0].map((_, i) => orders.filter(o => { const d = new Date(o.date || Date.now()); return (d.getDay() + 6) % 7 === i }).reduce((a, o) => a + Number(o.total || 0), 0)); const max = Math.max(...vals, 1); $('nySalesBars').innerHTML = vals.map((v, i) => `<div class="ny-bar" style="height:${Math.max(10, v / max * 135)}px"><span>${['L', 'M', 'X', 'J', 'V', 'S', 'D'][i]}</span></div>`).join('');
+            }
+
+            window.openEnhancedCheckout = function () {
+                const cartEl = $('cartItems'); if (!cartEl || !cartEl.children.length || cartEl.textContent.includes('vacío')) { toast('Agrega productos al carrito primero'); return; }
+                const u = current() || {}; $('nyName').value = u.name || ''; $('nyPhone').value = u.phone || ''; $('nyAddress').value = u.address || ''; $('nyCheckout').classList.remove('hidden');
+            };
+            window.closeEnhancedCheckout = () => $('nyCheckout')?.classList.add('hidden');
+            window.finalizeEnhancedCheckout = function (e) {
+                e.preventDefault(); const u = current() || {}; let cartRef = []; try { cartRef = typeof cart !== 'undefined' ? cart : [] } catch (_) { cartRef = [] }
+                if (!Array.isArray(cartRef) || !cartRef.length) { toast('El carrito está vacío'); return; }
+                const subtotal = cartRef.reduce((a, x) => a + Number(x.price || 0) * Number(x.quantity || 0), 0); const coupon = ($('nyCoupon').value || '').trim().toUpperCase(); const discount = coupon === 'NUTRI10' ? Math.round(subtotal * .10) : 0; const total = subtotal - discount;
+                const order = { id: 'NTR-' + Date.now(), username: u.username, client: $('nyName').value.trim(), phone: $('nyPhone').value.trim(), address: $('nyAddress').value.trim(), payment: $('nyPayment').value, notes: $('nyNotes').value.trim(), coupon, discount, items: cartRef.map(x => ({ name: x.name, price: x.price, quantity: x.quantity })), total, date: new Date().toLocaleString('es-CO'), status: 'Pendiente' };
+                const orders = getOrders(); orders.push(order); localStorage.setItem('nutriyogur_orders', JSON.stringify(orders));
+                u.name = order.client; u.phone = order.phone; u.address = order.address; window.currentUser = u;
+                try { localStorage.setItem('nutriyogur_current_user', JSON.stringify(u)) } catch (_) { }
+                try { cart = [] } catch (_) { } if (typeof updateCart === 'function') updateCart(); if (typeof renderClientOrders === 'function') renderClientOrders(); closeEnhancedCheckout(); if (typeof closeCart === 'function') closeCart(); renderNutriNotifications();
+                showInvoice(order); toast('Pedido creado correctamente'); nyScroll('pedidos');
+            };
+            function showInvoice(o) { $('nyInvoiceNumber').textContent = o.id; const items = o.items || []; $('nyInvoiceBody').innerHTML = `<div class="ny-invoice"><div class="ny-invoice-row"><span>Cliente</span><strong>${o.client}</strong></div><div class="ny-invoice-row"><span>Fecha</span><strong>${o.date}</strong></div><div class="ny-invoice-row"><span>Pago</span><strong>${o.payment}</strong></div>${items.map(i => `<div class="ny-invoice-row"><span>${i.quantity} × ${i.name}</span><strong>$${money(i.price * i.quantity)}</strong></div>`).join('')}${o.discount ? `<div class="ny-invoice-row"><span>Descuento ${o.coupon}</span><strong>-$${money(o.discount)}</strong></div>` : ''}<div class="ny-invoice-total">Total: $${money(o.total)}</div></div>`; $('nyInvoice').classList.remove('hidden') }
+
+            // Make the existing checkout button use the improved flow without changing the original order system elsewhere.
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('[onclick="checkout()"], [onclick="checkout() "]').forEach(b => b.setAttribute('onclick', 'openEnhancedCheckout()'));
+                const oldRender = window.renderClientOrders; if (typeof oldRender === 'function') { window.renderClientOrders = function () { oldRender(); enhanceOrderCards(); }; }
+                function enhanceOrderCards() { const states = ['Pendiente', 'Preparando', 'Enviado', 'Entregado']; document.querySelectorAll('#clientOrders .order-card').forEach(card => { if (card.querySelector('.ny-tracking')) return; const s = card.querySelector('.status')?.textContent.trim() || 'Pendiente'; const idx = Math.max(0, states.indexOf(s)); const t = document.createElement('div'); t.className = 'ny-tracking'; t.innerHTML = states.map((x, i) => `<div class="ny-track-step ${i < idx ? 'done ' : ''}${i === idx ? 'current' : ''}">${i < idx ? '✓ ' : i === idx ? '● ' : '○ '}${x}</div>`).join(''); card.appendChild(t); }); }
+                // Delay initialization so the original app has created currentUser.
+                setTimeout(() => { if (window.currentUser?.role === 'client') initClientPremium(); if (window.currentUser?.role === 'admin') initAdminPremium(); }, 250);
+            });
+            const oldLogin = window.login; if (typeof oldLogin === 'function') { window.login = function () { const r = oldLogin.apply(this, arguments); setTimeout(() => { if (window.currentUser?.role === 'client') initClientPremium(); if (window.currentUser?.role === 'admin') initAdminPremium(); }, 350); return r; }; }
+            const oldLogout = window.logout; if (typeof oldLogout === 'function') { window.logout = function () { document.body.classList.remove('ny-dark'); $('nyPremiumBar')?.classList.add('hidden'); $('nyPremiumHome')?.classList.add('hidden'); $('nyFabStack')?.classList.add('hidden'); $('nyAdminEnhanced')?.classList.add('hidden'); return oldLogout.apply(this, arguments); }; }
+        })();
+    </script>
+
+    <div id="nyQRModal" class="ny-qr-modal hidden" role="dialog" aria-modal="true" aria-labelledby="nyQRTitle">
+        <div class="ny-qr-card">
+            <h3 id="nyQRTitle">📱 Acceso directo a Nutriyogur</h3>
+            <p>Escanea este código con otro celular para abrir la aplicación. Después podrás iniciar sesión o crear tu
+                cuenta.</p>
+            <div id="nyQRBox" class="ny-qr-box" aria-label="Código QR de Nutriyogur"></div>
+            <div id="nyQRUrl" class="ny-qr-url"></div>
+            <div id="nyQRWarning" class="ny-qr-warning hidden"></div><button type="button" class="ny-qr-close"
+                onclick="closeNutriQR()">Cerrar</button>
+        </div>
+    </div>
+    <script>
+        (function () {
+            function appUrl() { return (location.protocol === 'http:' || location.protocol === 'https:') ? location.href.split('#')[0] : ''; }
+            window.openNutriQR = function () { const m = document.getElementById('nyQRModal'), b = document.getElementById('nyQRBox'), uEl = document.getElementById('nyQRUrl'), w = document.getElementById('nyQRWarning'); if (!m || !b) return; b.innerHTML = ''; w.classList.add('hidden'); const u = appUrl(); if (!u) { uEl.textContent = 'Archivo local: publica Nutriyogur en HTTPS para activar el QR desde otros celulares.'; w.textContent = 'Cuando la app tenga una URL web, este QR apuntará automáticamente a ella.'; w.classList.remove('hidden'); } else if (typeof QRCode === 'undefined') { uEl.textContent = u; w.textContent = 'No se pudo cargar el generador QR. Revisa tu conexión.'; w.classList.remove('hidden'); } else { uEl.textContent = u; new QRCode(b, { text: u, width: 210, height: 210, colorDark: '#172016', colorLight: '#FFFFFF', correctLevel: QRCode.CorrectLevel.H }); } m.classList.remove('hidden'); };
+            window.closeNutriQR = function () { document.getElementById('nyQRModal')?.classList.add('hidden') }; document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNutriQR() }); document.addEventListener('click', e => { const m = document.getElementById('nyQRModal'); if (m && e.target === m) closeNutriQR() });
+        })();
+    </script>
 </body>
 
 </html>
-
