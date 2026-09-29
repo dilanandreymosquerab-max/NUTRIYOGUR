@@ -844,6 +844,81 @@
             height: 30px;
         }
 
+
+        /* === ACTIVIDAD DE ACCESO / ADMIN === */
+        .admin-activity-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 14px;
+        }
+
+        .admin-activity-note {
+            color: #68727e;
+            font-size: 13px;
+            line-height: 1.55;
+            max-width: 760px;
+            margin-top: -10px;
+        }
+
+        .admin-activity-refresh {
+            width: auto !important;
+            min-width: 120px;
+            margin-top: 0 !important;
+        }
+
+        .activity-status {
+            padding: 10px 12px;
+            border: 1px solid var(--app-border);
+            border-radius: 9px;
+            background: #f7f9fa;
+            color: #53606c;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .activity-table-wrap {
+            overflow: auto;
+            border: 1px solid var(--app-border);
+            border-radius: 10px;
+        }
+
+        .activity-table-wrap table {
+            min-width: 900px;
+        }
+
+        .activity-event-login {
+            color: #236b34;
+            font-weight: 800;
+        }
+
+        .activity-event-register {
+            color: #c94f12;
+            font-weight: 800;
+        }
+
+        .activity-event-logout {
+            color: #53616d;
+            font-weight: 800;
+        }
+
+        .activity-empty {
+            text-align: center !important;
+            color: #68727e;
+            padding: 25px !important;
+        }
+
+        @media(max-width:700px) {
+            .admin-activity-head {
+                flex-direction: column;
+            }
+
+            .admin-activity-refresh {
+                width: 100% !important;
+            }
+        }
+
         /* =========================
    RESPONSIVE
 ========================= */
@@ -2041,6 +2116,65 @@
         .product-card h3 {
             color: var(--sys-dark) !important;
             font-weight: 780 !important
+        }
+
+        .size-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 12px 0
+        }
+
+        .size-option {
+            position: relative
+        }
+
+        .size-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none
+        }
+
+        .size-option label {
+            display: block;
+            text-align: center;
+            padding: 9px 6px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .size-option input:checked+label {
+            border-color: #FF6A00;
+            background: #FFF3E8;
+            box-shadow: 0 0 0 2px rgba(255, 106, 0, .12)
+        }
+
+        .size-price {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: .75;
+            margin-top: 2px
+        }
+
+        .admin-price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+
+        @media(max-width:600px) {
+            .admin-price-grid {
+                grid-template-columns: 1fr
+            }
+
+            .size-selector {
+                grid-template-columns: 1fr 1fr
+            }
         }
 
         .product-card .price {
@@ -5260,6 +5394,41 @@
         </div>
 
 
+
+        <!-- ACTIVIDAD DE ACCESO -->
+        <div class="admin-card admin-activity-card">
+            <div class="admin-activity-head">
+                <div>
+                    <h2>🔐 Actividad de acceso</h2>
+                    <p class="admin-activity-note">
+                        Registra quién crea una cuenta y quién inicia/cierra sesión.
+                        Los registros remotos aparecen en todos los dispositivos cuando se configura el servidor.
+                    </p>
+                </div>
+                <button type="button" class="secondary-btn admin-activity-refresh" onclick="renderAdminActivity()">
+                    ↻ Actualizar
+                </button>
+            </div>
+            <div id="activityConnectionStatus" class="activity-status">
+                Modo local: este navegador
+            </div>
+            <div class="activity-table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha y hora</th>
+                            <th>Evento</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Dispositivo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminActivity"></tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- DETALLE DE PEDIDO / CLIENTE -->
         <div id="adminDetailModal" class="modal hidden" onclick="if(event.target===this)closeAdminDetail()">
             <div class="modal-box admin-detail-modal-box">
@@ -5397,12 +5566,15 @@
 
             </div>
 
-            <div class="form-group">
-
-                <label>Precio</label>
-
-                <input id="productPrice" type="number" placeholder="6000">
-
+            <div class="admin-price-grid">
+                <div class="form-group">
+                    <label>Precio Personal</label>
+                    <input id="productPrice" type="number" placeholder="6000">
+                </div>
+                <div class="form-group">
+                    <label>Precio Familiar</label>
+                    <input id="productFamilyPrice" type="number" placeholder="9500">
+                </div>
             </div>
 
             <div class="form-group">
@@ -5453,6 +5625,7 @@
                 name: "Fresa",
                 category: "frutas",
                 price: 6000,
+                familiarPrice: 9500,
                 emoji: "🍓",
                 image: PRODUCT_IMAGES["Fresa"]
             },
@@ -5461,6 +5634,7 @@
                 name: "Mora",
                 category: "frutas",
                 price: 6000,
+                familiarPrice: 9500,
                 emoji: "🫐",
                 image: PRODUCT_IMAGES["Mora"]
             },
@@ -5469,6 +5643,7 @@
                 name: "Maracuyá",
                 category: "frutas",
                 price: 6000,
+                familiarPrice: 9500,
                 emoji: "🥭",
                 image: PRODUCT_IMAGES["Maracuyá"]
             },
@@ -5477,6 +5652,7 @@
                 name: "Piña",
                 category: "frutas",
                 price: 6000,
+                familiarPrice: 9500,
                 emoji: "🍍",
                 image: PRODUCT_IMAGES["Piña"]
             },
@@ -5485,6 +5661,7 @@
                 name: "Coco",
                 category: "frutas",
                 price: 6000,
+                familiarPrice: 9500,
                 emoji: "🥥",
                 image: PRODUCT_IMAGES["Coco"]
             },
@@ -5493,6 +5670,7 @@
                 name: "Café",
                 category: "especiales",
                 price: 6500,
+                familiarPrice: 10500,
                 emoji: "☕",
                 image: PRODUCT_IMAGES["Café"]
             },
@@ -5501,6 +5679,7 @@
                 name: "Guanábana",
                 category: "frutas",
                 price: 6000,
+                familiarPrice: 9500,
                 emoji: "🍈",
                 image: PRODUCT_IMAGES["Guanábana"]
             },
@@ -5509,6 +5688,7 @@
                 name: "Natural",
                 category: "especiales",
                 price: 5500,
+                familiarPrice: 9000,
                 emoji: "🥛",
                 image: PRODUCT_IMAGES["Natural"]
             }
@@ -5525,6 +5705,16 @@
                 JSON.stringify(defaultProducts)
             );
         }
+
+        (function migrateProductSizes() {
+            let stored = JSON.parse(localStorage.getItem("nutriyogur_products") || "[]");
+            let changed = false;
+            stored = stored.map(p => {
+                if (!p.familiarPrice) { p.familiarPrice = Math.round((Number(p.price) * 1.6) / 500) * 500; changed = true; }
+                return p;
+            });
+            if (changed) localStorage.setItem("nutriyogur_products", JSON.stringify(stored));
+        })();
 
         if (!localStorage.getItem("nutriyogur_users")) {
 
@@ -5573,6 +5763,170 @@
 
         let cart = [];
 
+
+
+        /* =====================================================
+           ACTIVIDAD DE ACCESO
+           -----------------------------------------------
+           IMPORTANTE:
+           localStorage sirve solo para el dispositivo actual.
+           Para ver actividad de OTROS celulares/computadores,
+           configura un endpoint HTTPS que guarde los eventos.
+           Ejemplo esperado:
+             POST /events
+             { type, username, name, email, timestamp, device }
+             GET  /events
+        ===================================================== */
+
+        const NUTRIYOGUR_ACTIVITY_ENDPOINT = window.NUTRIYOGUR_ACTIVITY_ENDPOINT || "";
+
+        function getActivityDevice() {
+            const ua = navigator.userAgent || "";
+            let type = /Mobi|Android|iPhone|iPad/i.test(ua) ? "Móvil" : "Computador";
+            let browser = "Navegador";
+            if (/Edg\//i.test(ua)) browser = "Edge";
+            else if (/Chrome\//i.test(ua)) browser = "Chrome";
+            else if (/Firefox\//i.test(ua)) browser = "Firefox";
+            else if (/Safari\//i.test(ua)) browser = "Safari";
+            return `${type} · ${browser}`;
+        }
+
+        function getLocalActivity() {
+            try {
+                return JSON.parse(localStorage.getItem("nutriyogur_activity") || "[]");
+            } catch (_) {
+                return [];
+            }
+        }
+
+        function saveLocalActivity(list) {
+            localStorage.setItem(
+                "nutriyogur_activity",
+                JSON.stringify(list.slice(-300))
+            );
+        }
+
+        async function recordAccessEvent(type, userData) {
+            const event = {
+                id: `evt_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+                type,
+                username: userData?.username || "",
+                name: userData?.name || "",
+                email: userData?.email || "",
+                timestamp: new Date().toISOString(),
+                device: getActivityDevice()
+            };
+
+            const local = getLocalActivity();
+            local.push(event);
+            saveLocalActivity(local);
+
+            if (!NUTRIYOGUR_ACTIVITY_ENDPOINT) return event;
+
+            try {
+                await fetch(NUTRIYOGUR_ACTIVITY_ENDPOINT, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(event),
+                    keepalive: true
+                });
+            } catch (error) {
+                console.warn("No se pudo sincronizar la actividad con el servidor.", error);
+            }
+
+            return event;
+        }
+
+        async function fetchRemoteActivity() {
+            if (!NUTRIYOGUR_ACTIVITY_ENDPOINT) return null;
+
+            try {
+                const response = await fetch(NUTRIYOGUR_ACTIVITY_ENDPOINT, {
+                    method: "GET",
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const data = await response.json();
+                return Array.isArray(data) ? data : (Array.isArray(data.events) ? data.events : []);
+            } catch (error) {
+                console.warn("No se pudo consultar la actividad remota.", error);
+                return null;
+            }
+        }
+
+        function activityEventLabel(type) {
+            if (type === "register") return '<span class="activity-event-register">Cuenta creada</span>';
+            if (type === "login") return '<span class="activity-event-login">Inicio de sesión</span>';
+            if (type === "logout") return '<span class="activity-event-logout">Cierre de sesión</span>';
+            return type || "Actividad";
+        }
+
+        function escapeActivity(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatActivityDate(iso) {
+            const d = new Date(iso);
+            if (Number.isNaN(d.getTime())) return iso || "";
+            return d.toLocaleString("es-CO", {
+                dateStyle: "short",
+                timeStyle: "medium"
+            });
+        }
+
+        async function renderAdminActivity() {
+            const tbody = document.getElementById("adminActivity");
+            const status = document.getElementById("activityConnectionStatus");
+            if (!tbody) return;
+
+            let activity = getLocalActivity();
+            const remote = await fetchRemoteActivity();
+
+            if (remote) {
+                activity = remote;
+                if (status) {
+                    status.textContent = `✓ Conectado al registro central · ${activity.length} eventos`;
+                    status.style.color = "#236b34";
+                }
+            } else if (status) {
+                status.textContent = NUTRIYOGUR_ACTIVITY_ENDPOINT
+                    ? "⚠ Servidor no disponible. Mostrando actividad guardada en este dispositivo."
+                    : "ℹ Modo local. Para ver accesos de otros dispositivos hay que conectar un servidor central.";
+                status.style.color = NUTRIYOGUR_ACTIVITY_ENDPOINT ? "#a05a00" : "#53606c";
+            }
+
+            activity = activity.slice().sort(
+                (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+            );
+
+            if (!activity.length) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="activity-empty">
+                            Todavía no hay actividad registrada.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = activity.map(event => `
+                <tr>
+                    <td>${escapeActivity(formatActivityDate(event.timestamp))}</td>
+                    <td>${activityEventLabel(event.type)}</td>
+                    <td>${escapeActivity(event.username)}</td>
+                    <td>${escapeActivity(event.name)}</td>
+                    <td>${escapeActivity(event.email)}</td>
+                    <td>${escapeActivity(event.device)}</td>
+                </tr>
+            `).join("");
+        }
 
         /* =====================================================
            ACCESO
@@ -5669,6 +6023,7 @@
                         role: "admin"
                     };
 
+                    recordAccessEvent("login", currentUser);
                     showAdmin();
 
                 } else {
@@ -5706,6 +6061,7 @@
                 role: "client"
             };
 
+            recordAccessEvent("login", currentUser);
             showClient();
         }
 
@@ -5805,6 +6161,10 @@
 
         function logout() {
 
+            if (currentUser) {
+                recordAccessEvent("logout", currentUser);
+            }
+
             currentUser = null;
             cart = [];
 
@@ -5900,6 +6260,12 @@
                 JSON.stringify(users)
             );
 
+            recordAccessEvent("register", {
+                username,
+                name,
+                email
+            });
+
 
             alert(
                 "Cuenta creada correctamente."
@@ -5971,16 +6337,19 @@
                     ${product.name}.
                 </p>
 
-                <div class="price">
-                    $${formatMoney(product.price)}
+                <div class="size-selector" role="group" aria-label="Tamaño del yogur ${product.name}">
+                    <div class="size-option">
+                        <input type="radio" id="size-personal-${product.id}" name="size-${product.id}" value="Personal" checked>
+                        <label for="size-personal-${product.id}">🥤 Personal<span class="size-price">$${formatMoney(product.price)}</span></label>
+                    </div>
+                    <div class="size-option">
+                        <input type="radio" id="size-familiar-${product.id}" name="size-${product.id}" value="Familiar">
+                        <label for="size-familiar-${product.id}">👨‍👩‍👧 Familiar<span class="size-price">$${formatMoney(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)}</span></label>
+                    </div>
                 </div>
 
-                <button
-                    class="add-cart"
-                    onclick="addToCart(${product.id})">
-
+                <button class="add-cart" onclick="addSelectedSizeToCart(${product.id})">
                     🛒 Agregar al carrito
-
                 </button>
 
             </div>
@@ -6012,43 +6381,24 @@
            CARRITO
         ===================================================== */
 
-        function addToCart(productId) {
-
-            const product =
-                products.find(
-                    p => p.id === productId
-                );
-
-            if (!product) return;
-
-
-            const existing =
-                cart.find(
-                    item => item.id === productId
-                );
-
-
-            if (existing) {
-
-                existing.quantity++;
-
-            } else {
-
-                cart.push({
-                    ...product,
-                    quantity: 1
-                });
-
-            }
-
-
-            updateCart();
-
-            openCart();
+        function addSelectedSizeToCart(productId) {
+            const selected = document.querySelector(`input[name="size-${productId}"]:checked`);
+            addToCart(productId, selected ? selected.value : "Personal");
         }
 
-
-        function updateCart() {
+        function addToCart(productId, size = "Personal") {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const unitPrice = size === "Familiar"
+                ? Number(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)
+                : Number(product.price);
+            const cartKey = `${productId}-${size}`;
+            const existing = cart.find(item => item.cartKey === cartKey);
+            if (existing) existing.quantity++;
+            else cart.push({ ...product, id: product.id, cartKey, size, price: unitPrice, quantity: 1 });
+            updateCart();
+            openCart();
+        } function updateCart() {
 
             const container =
                 document.getElementById(
@@ -6088,19 +6438,15 @@
             <div style="display:flex;align-items:center;gap:10px">
                 <img src="${getProductImage(item.name)}" alt="Yogur ${item.name}" style="width:48px;height:48px;object-fit:cover;border-radius:10px">
                 <strong>${item.name}</strong>
-
-                <br>
-
-                <small>
-                    $${formatMoney(item.price)}
-                </small>
+                <span style="display:block;font-size:12px;opacity:.75">${item.size || "Personal"}</span>
+                <small>$${formatMoney(item.price)} c/u</small>
 
             </div>
 
             <div class="qty">
 
                 <button
-                    onclick="changeQty(${item.id},-1)">
+                    onclick="changeQty('${item.cartKey}',-1)">
                     −
                 </button>
 
@@ -6109,7 +6455,7 @@
                 </span>
 
                 <button
-                    onclick="changeQty(${item.id},1)">
+                    onclick="changeQty('${item.cartKey}',1)">
                     +
                 </button>
 
@@ -6129,11 +6475,11 @@
         }
 
 
-        function changeQty(id, change) {
+        function changeQty(cartKey, change) {
 
             const item =
                 cart.find(
-                    p => p.id === id
+                    p => p.cartKey === cartKey || (!p.cartKey && p.id === cartKey)
                 );
 
             if (!item) return;
@@ -6216,6 +6562,7 @@
                     cart.map(
                         item => ({
                             name: item.name,
+                            size: item.size || "Personal",
                             price: item.price,
                             quantity: item.quantity
                         })
@@ -6495,6 +6842,7 @@
             renderAdminProducts();
             renderAdminOrders();
             renderAdminClients();
+            renderAdminActivity();
         }
 
 
@@ -6530,7 +6878,8 @@
             </td>
 
             <td>
-                $${formatMoney(product.price)}
+                <div>$${formatMoney(product.price)} <small>(Personal)</small></div>
+                <div>$${formatMoney(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)} <small>(Familiar)</small></div>
             </td>
 
             <td>
@@ -6643,6 +6992,8 @@
             ).value =
                 product.price;
 
+            document.getElementById("productFamilyPrice").value = product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500;
+
 
             document.getElementById(
                 "productEmoji"
@@ -6683,6 +7034,8 @@
                     ).value
                 );
 
+            const familiarPrice = Number(document.getElementById("productFamilyPrice").value);
+
 
             const emoji =
                 document.getElementById(
@@ -6690,7 +7043,7 @@
                 ).value.trim();
 
 
-            if (!name || !price) {
+            if (!name || !price || !familiarPrice) {
 
                 alert(
                     "Completa nombre y precio."
@@ -6711,6 +7064,7 @@
                 product.name = name;
                 product.category = category;
                 product.price = price;
+                product.familiarPrice = familiarPrice;
                 product.emoji = emoji || "🥛";
 
             } else {
@@ -6725,6 +7079,7 @@
                     category,
 
                     price,
+                    familiarPrice,
 
                     emoji:
                         emoji || "🥛"
@@ -6978,7 +7333,7 @@
             <div class="admin-detail-item">
                 <div>
                     <strong>${item.name}</strong>
-                    <small>$${formatMoney(item.price)} c/u</small>
+                    <small>${item.size || "Personal"} · $${formatMoney(item.price)} c/u</small>
                 </div>
                 <strong>x${item.quantity}</strong>
                 <strong>$${formatMoney(Number(item.price) * Number(item.quantity))}</strong>
@@ -7199,7 +7554,7 @@
             cart.forEach(item => {
                 total += item.price * item.quantity; count += item.quantity;
                 const div = document.createElement("div"); div.className = "cart-item";
-                div.innerHTML = `<div><strong>${item.emoji || "🥛"} ${item.name}</strong><br><small>$${formatMoney(item.price)}</small></div><div class="qty"><button onclick="changeQty(${item.id},-1)">−</button><span>${item.quantity}</span><button onclick="changeQty(${item.id},1)">+</button></div>`;
+                div.innerHTML = `<div><strong>${item.emoji || "🥛"} ${item.name}</strong><br><small>$${formatMoney(item.price)}</small></div><div class="qty"><button onclick="changeQty('${item.cartKey}',-1)">−</button><span>${item.quantity}</span><button onclick="changeQty('${item.cartKey}',1)">+</button></div>`;
                 container.appendChild(div);
             });
             const totalEl = document.getElementById("cartTotal"); if (totalEl) totalEl.textContent = formatMoney(total);
