@@ -7498,7 +7498,7 @@
     <h3 style="margin:18px 0 6px">Yogur ${p.name}</h3>
     <p style="color:#68727e">Producto Nutriyogur · categoría ${p.category}</p>
     <div style="font-size:24px;font-weight:800;color:#e95700;margin:14px 0">$${formatMoney(p.price)}</div>
-    <button class="primary-btn" style="width:100%" onclick="addToCart(${p.id});closeProductDetail()">Agregar al carrito</button>`;
+    <button class="primary-btn" style="width:100%" onclick="addToCart(${p.id}, 'Personal');closeProductDetail()">Agregar al carrito</button>`;
             document.getElementById("productDetailModal").classList.remove("hidden");
         }
         function closeProductDetail() { document.getElementById("productDetailModal")?.classList.add("hidden") }
@@ -7524,8 +7524,18 @@
         <p>Yogur Nutriyogur ${product.name}. Producto de catálogo.</p>
         <div class="price">$${formatMoney(product.price)}</div>
         <div class="product-meta"><span>Disponible</span><span>${product.category}</span></div>
+        <div class="size-selector" role="group" aria-label="Tamaño del yogur ${product.name}">
+          <div class="size-option">
+            <input type="radio" id="size-personal-${product.id}" name="size-${product.id}" value="Personal" checked>
+            <label for="size-personal-${product.id}">🥤 Personal <span class="size-price">$${formatMoney(product.price)}</span></label>
+          </div>
+          <div class="size-option">
+            <input type="radio" id="size-familiar-${product.id}" name="size-${product.id}" value="Familiar">
+            <label for="size-familiar-${product.id}">👨‍👩‍👧 Familiar <span class="size-price">$${formatMoney(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)}</span></label>
+          </div>
+        </div>
         <div class="product-actions">
-          <button class="add-cart" onclick="addToCart(${product.id})">Agregar</button>
+          <button class="add-cart" onclick="addSelectedSizeToCart(${product.id})">Agregar</button>
           <button class="detail-btn" onclick="openProductDetail(${product.id})">Detalle</button>
         </div>
       </div>`;
@@ -7541,26 +7551,58 @@
             renderProducts(category);
         }
 
-        function addToCart(productId) {
-            const product = products.find(p => p.id === Number(productId)); if (!product) return;
-            const existing = cart.find(item => item.id === Number(productId));
-            if (existing) existing.quantity++; else cart.push({ ...product, quantity: 1 });
-            updateCart(); toast(`${product.name} agregado al carrito`); openCart();
+        function addToCart(productId, size = "Personal") {
+            const product = products.find(p => p.id === Number(productId));
+            if (!product) return;
+            const unitPrice = size === "Familiar"
+                ? Number(product.familiarPrice || Math.round(Number(product.price) * 1.6 / 500) * 500)
+                : Number(product.price);
+            const cartKey = `${product.id}-${size}`;
+            const existing = cart.find(item => item.cartKey === cartKey);
+            if (existing) existing.quantity++;
+            else cart.push({ ...product, id: Number(product.id), cartKey, size, price: unitPrice, quantity: 1 });
+            updateCart();
+            toast(`${product.name} (${size}) agregado al carrito`);
+            openCart();
         }
+
+        function addSelectedSizeToCart(productId) {
+            const selected = document.querySelector(`input[name="size-${productId}"]:checked`);
+            addToCart(productId, selected ? selected.value : "Personal");
+        }
+
         function updateCart() {
-            const container = document.getElementById("cartItems"); if (!container) return;
-            container.innerHTML = ""; let total = 0, count = 0;
-            if (!cart.length) container.innerHTML = '<p style="color:#68727e">Tu carrito está vacío.</p>';
+            const container = document.getElementById("cartItems");
+            if (!container) return;
+            container.innerHTML = "";
+            let total = 0, count = 0;
+            if (!cart.length) {
+                container.innerHTML = '<p style="color:#68727e">Tu carrito está vacío.</p>';
+            }
             cart.forEach(item => {
-                total += item.price * item.quantity; count += item.quantity;
-                const div = document.createElement("div"); div.className = "cart-item";
-                div.innerHTML = `<div><strong>${item.emoji || "🥛"} ${item.name}</strong><br><small>$${formatMoney(item.price)}</small></div><div class="qty"><button onclick="changeQty('${item.cartKey}',-1)">−</button><span>${item.quantity}</span><button onclick="changeQty('${item.cartKey}',1)">+</button></div>`;
+                total += Number(item.price || 0) * Number(item.quantity || 0);
+                count += Number(item.quantity || 0);
+                const div = document.createElement("div");
+                div.className = "cart-item";
+                const key = item.cartKey || `${item.id}-${item.size || "Personal"}`;
+                div.innerHTML = `<div><strong>${item.emoji || "🥛"} ${item.name}</strong><br><small>${item.size || "Personal"} · $${formatMoney(item.price)}</small></div><div class="qty"><button type="button" onclick="changeQty('${key}',-1)">−</button><span>${item.quantity}</span><button type="button" onclick="changeQty('${key}',1)">+</button></div>`;
                 container.appendChild(div);
             });
-            const totalEl = document.getElementById("cartTotal"); if (totalEl) totalEl.textContent = formatMoney(total);
-            const badge = document.getElementById("mobileCartBadge"); if (badge) badge.textContent = count;
+            const totalEl = document.getElementById("cartTotal");
+            if (totalEl) totalEl.textContent = formatMoney(total);
+            const badge = document.getElementById("mobileCartBadge");
+            if (badge) badge.textContent = count;
         }
-        function changeQty(id, change) { const item = cart.find(p => p.id === Number(id)); if (!item) return; item.quantity += change; if (item.quantity <= 0) cart = cart.filter(p => p.id !== Number(id)); updateCart() }
+
+        function changeQty(cartKey, change) {
+            const item = cart.find(p => (p.cartKey || `${p.id}-${p.size || "Personal"}`) === String(cartKey));
+            if (!item) return;
+            item.quantity += Number(change);
+            if (item.quantity <= 0) {
+                cart = cart.filter(p => (p.cartKey || `${p.id}-${p.size || "Personal"}`) !== String(cartKey));
+            }
+            updateCart();
+        }
 
         function checkout() {
             if (!cart.length) { toast("Agrega productos al carrito primero"); return; }
@@ -7884,7 +7926,7 @@
                 e.preventDefault(); const u = current() || {}; let cartRef = []; try { cartRef = typeof cart !== 'undefined' ? cart : [] } catch (_) { cartRef = [] }
                 if (!Array.isArray(cartRef) || !cartRef.length) { toast('El carrito está vacío'); return; }
                 const subtotal = cartRef.reduce((a, x) => a + Number(x.price || 0) * Number(x.quantity || 0), 0); const coupon = ($('nyCoupon').value || '').trim().toUpperCase(); const discount = coupon === 'NUTRI10' ? Math.round(subtotal * .10) : 0; const total = subtotal - discount;
-                const order = { id: 'NTR-' + Date.now(), username: u.username, client: $('nyName').value.trim(), phone: $('nyPhone').value.trim(), address: $('nyAddress').value.trim(), payment: $('nyPayment').value, notes: $('nyNotes').value.trim(), coupon, discount, items: cartRef.map(x => ({ name: x.name, price: x.price, quantity: x.quantity })), total, date: new Date().toLocaleString('es-CO'), status: 'Pendiente' };
+                const order = { id: 'NTR-' + Date.now(), username: u.username, client: $('nyName').value.trim(), phone: $('nyPhone').value.trim(), address: $('nyAddress').value.trim(), payment: $('nyPayment').value, notes: $('nyNotes').value.trim(), coupon, discount, items: cartRef.map(x => ({ name: x.name, size: x.size || 'Personal', price: x.price, quantity: x.quantity })), total, date: new Date().toLocaleString('es-CO'), status: 'Pendiente' };
                 const orders = getOrders(); orders.push(order); localStorage.setItem('nutriyogur_orders', JSON.stringify(orders));
                 u.name = order.client; u.phone = order.phone; u.address = order.address; window.currentUser = u;
                 try { localStorage.setItem('nutriyogur_current_user', JSON.stringify(u)) } catch (_) { }
