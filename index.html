@@ -5569,11 +5569,11 @@
             <div class="admin-price-grid">
                 <div class="form-group">
                     <label>Precio Personal</label>
-                    <input id="productPrice" type="number" placeholder="6000">
+                    <input id="productPrice" type="number" placeholder="2500">
                 </div>
                 <div class="form-group">
                     <label>Precio Familiar</label>
-                    <input id="productFamilyPrice" type="number" placeholder="9500">
+                    <input id="productFamilyPrice" type="number" placeholder="12000">
                 </div>
             </div>
 
@@ -5624,8 +5624,8 @@
                 id: 1,
                 name: "Fresa",
                 category: "frutas",
-                price: 6000,
-                familiarPrice: 9500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🍓",
                 image: PRODUCT_IMAGES["Fresa"]
             },
@@ -5633,8 +5633,8 @@
                 id: 2,
                 name: "Mora",
                 category: "frutas",
-                price: 6000,
-                familiarPrice: 9500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🫐",
                 image: PRODUCT_IMAGES["Mora"]
             },
@@ -5642,8 +5642,8 @@
                 id: 3,
                 name: "Maracuyá",
                 category: "frutas",
-                price: 6000,
-                familiarPrice: 9500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🥭",
                 image: PRODUCT_IMAGES["Maracuyá"]
             },
@@ -5651,8 +5651,8 @@
                 id: 4,
                 name: "Piña",
                 category: "frutas",
-                price: 6000,
-                familiarPrice: 9500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🍍",
                 image: PRODUCT_IMAGES["Piña"]
             },
@@ -5660,8 +5660,8 @@
                 id: 5,
                 name: "Coco",
                 category: "frutas",
-                price: 6000,
-                familiarPrice: 9500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🥥",
                 image: PRODUCT_IMAGES["Coco"]
             },
@@ -5669,8 +5669,8 @@
                 id: 6,
                 name: "Café",
                 category: "especiales",
-                price: 6500,
-                familiarPrice: 10500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "☕",
                 image: PRODUCT_IMAGES["Café"]
             },
@@ -5678,8 +5678,8 @@
                 id: 7,
                 name: "Guanábana",
                 category: "frutas",
-                price: 6000,
-                familiarPrice: 9500,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🍈",
                 image: PRODUCT_IMAGES["Guanábana"]
             },
@@ -5687,8 +5687,8 @@
                 id: 8,
                 name: "Natural",
                 category: "especiales",
-                price: 5500,
-                familiarPrice: 9000,
+                price: 2500,
+                familiarPrice: 12000,
                 emoji: "🥛",
                 image: PRODUCT_IMAGES["Natural"]
             }
@@ -5707,13 +5707,28 @@
         }
 
         (function migrateProductSizes() {
+            // Precios oficiales actuales de Nutriyogur.
+            // También actualiza datos guardados anteriormente en localStorage.
             let stored = JSON.parse(localStorage.getItem("nutriyogur_products") || "[]");
             let changed = false;
+
             stored = stored.map(p => {
-                if (!p.familiarPrice) { p.familiarPrice = Math.round((Number(p.price) * 1.6) / 500) * 500; changed = true; }
+                if (p && p.id >= 1 && p.id <= 8) {
+                    if (Number(p.price) !== 2500) {
+                        p.price = 2500;
+                        changed = true;
+                    }
+                    if (Number(p.familiarPrice) !== 12000) {
+                        p.familiarPrice = 12000;
+                        changed = true;
+                    }
+                }
                 return p;
             });
-            if (changed) localStorage.setItem("nutriyogur_products", JSON.stringify(stored));
+
+            if (changed) {
+                localStorage.setItem("nutriyogur_products", JSON.stringify(stored));
+            }
         })();
 
         if (!localStorage.getItem("nutriyogur_users")) {
@@ -6344,7 +6359,7 @@
                     </div>
                     <div class="size-option">
                         <input type="radio" id="size-familiar-${product.id}" name="size-${product.id}" value="Familiar">
-                        <label for="size-familiar-${product.id}">👨‍👩‍👧 Familiar<span class="size-price">$${formatMoney(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)}</span></label>
+                        <label for="size-familiar-${product.id}">👨‍👩‍👧 Familiar<span class="size-price">$${formatMoney(product.familiarPrice || 12000)}</span></label>
                     </div>
                 </div>
 
@@ -6390,7 +6405,7 @@
             const product = products.find(p => p.id === productId);
             if (!product) return;
             const unitPrice = size === "Familiar"
-                ? Number(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)
+                ? Number(product.familiarPrice || 12000)
                 : Number(product.price);
             const cartKey = `${productId}-${size}`;
             const existing = cart.find(item => item.cartKey === cartKey);
@@ -6879,7 +6894,7 @@
 
             <td>
                 <div>$${formatMoney(product.price)} <small>(Personal)</small></div>
-                <div>$${formatMoney(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)} <small>(Familiar)</small></div>
+                <div>$${formatMoney(product.familiarPrice || 12000)} <small>(Familiar)</small></div>
             </td>
 
             <td>
@@ -6992,7 +7007,7 @@
             ).value =
                 product.price;
 
-            document.getElementById("productFamilyPrice").value = product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500;
+            document.getElementById("productFamilyPrice").value = product.familiarPrice || 12000;
 
 
             document.getElementById(
@@ -7531,7 +7546,7 @@
           </div>
           <div class="size-option">
             <input type="radio" id="size-familiar-${product.id}" name="size-${product.id}" value="Familiar">
-            <label for="size-familiar-${product.id}">👨‍👩‍👧 Familiar <span class="size-price">$${formatMoney(product.familiarPrice || Math.round(product.price * 1.6 / 500) * 500)}</span></label>
+            <label for="size-familiar-${product.id}">👨‍👩‍👧 Familiar <span class="size-price">$${formatMoney(product.familiarPrice || 12000)}</span></label>
           </div>
         </div>
         <div class="product-actions">
